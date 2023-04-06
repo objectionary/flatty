@@ -1,7 +1,7 @@
 /*
  * The MIT License (MIT)
  *
- * Copyright (c) 2022 Objectionary
+ * Copyright (c) 2023 Objectionary.com
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,15 +26,17 @@ package org.objectionary;
 import java.io.IOException;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
+import org.junit.jupiter.api.Test;
 
 /**
- * Packs tests.
+ * Test skeleton.
  *
  * @since 0.1.0
  */
-class PacksTest {
+final class DummyTest {
 
-    void transformsPack(final String pack) throws IOException {
+    @Test
+    void dummyTest() throws IOException {
         MatcherAssert.assertThat(
             2,
             Matchers.equalTo(
