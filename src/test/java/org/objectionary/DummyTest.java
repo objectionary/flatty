@@ -21,13 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
-/**
- * Dummy test.
- *
- * @since 0.0
- * @checkstyle PackageNameCheck (4 lines)
- */
 package org.objectionary;
 
 import java.io.IOException;
