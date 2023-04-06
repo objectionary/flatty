@@ -45,9 +45,9 @@ final class DummyTest {
     @Test
     void dummyTest() throws IOException {
         MatcherAssert.assertThat(
-            2,
+            4,
             Matchers.equalTo(
-                1 + 1
+                2 + 2
             )
         );
     }
