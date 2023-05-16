@@ -1,5 +1,3 @@
 package org.objectionary.tokens;
 
-public class ArrowToken extends Token {
-
-}
+public class ArrowToken extends Token {}
