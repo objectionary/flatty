@@ -7,17 +7,17 @@ package org.objectionary.tokens;
  */
 public class BracketToken extends Token {
 
-	public enum BracketType {
-		OPEN, CLOSE
-	}
+    BracketType state;
 
-	BracketType state;
+    public BracketToken(BracketType state) {
+        this.state = state;
+    }
 
-	public BracketToken(BracketType state) {
-		this.state = state;
-	}
+    public BracketType getState() {
+        return state;
+    }
 
-	public BracketType getState() {
-		return state;
-	}
+    public enum BracketType {
+        OPEN, CLOSE
+    }
 }

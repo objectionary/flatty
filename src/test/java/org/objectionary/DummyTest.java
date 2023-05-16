@@ -23,10 +23,11 @@
  */
 package org.objectionary;
 
-import java.io.IOException;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
+
+import java.io.IOException;
 
 /**
  * Test skeleton.
@@ -38,10 +39,10 @@ final class DummyTest {
     @Test
     void dummyTest() throws IOException {
         MatcherAssert.assertThat(
-            4,
-            Matchers.equalTo(
-                2 + 2
-            )
+                4,
+                Matchers.equalTo(
+                        2 + 2
+                )
         );
     }
 }

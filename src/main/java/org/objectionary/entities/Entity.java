@@ -1,8 +1,8 @@
 package org.objectionary.entities;
 
 public abstract class Entity {
-	@Override
-	public String toString() {
-		return null;
-	}
+    @Override
+    public String toString() {
+        return null;
+    }
 }
