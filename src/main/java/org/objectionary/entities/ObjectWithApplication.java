@@ -23,9 +23,9 @@ public class ObjectWithApplication extends Entity {
 
   @Override
   public String toString() {
-    StringBuilder buffer = new StringBuilder();
+    final StringBuilder buffer = new StringBuilder();
 
-    int size = application.size();
+    final int size = application.size();
     int count = 0;
     for (Map.Entry<String, Entity> entry : getApplication().entrySet()) {
       buffer.append(entry.getKey()).append(" ↦ ").append(entry.getValue());

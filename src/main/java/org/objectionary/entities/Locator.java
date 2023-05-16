@@ -12,7 +12,7 @@ public class Locator extends Entity {
   }
 
   public List<String> getPath() {
-    return path;
+    return this.path;
   }
 
   @Override

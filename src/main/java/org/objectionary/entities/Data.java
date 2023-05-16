@@ -9,7 +9,7 @@ public class Data extends Entity {
   }
 
   public int getData() {
-    return data;
+    return this.data;
   }
 
   @Override

@@ -9,7 +9,7 @@ public class Lambda extends Entity {
   }
 
   public String getFunction() {
-    return function;
+    return this.function;
   }
 
   @Override

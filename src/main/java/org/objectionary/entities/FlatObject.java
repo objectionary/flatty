@@ -17,11 +17,11 @@ public class FlatObject extends Entity {
   }
 
   public String getName() {
-    return name;
+    return this.name;
   }
 
   public String getLocator() {
-    return locator;
+    return this.locator;
   }
 
   @Override

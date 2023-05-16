@@ -13,7 +13,7 @@ public class BracketToken extends Token {
   }
 
   public BracketType getState() {
-    return state;
+    return this.state;
   }
 
   public enum BracketType {

@@ -24,7 +24,7 @@ public class Tokenizer {
   }
 
   Token getToken() {
-    String token = tokens[position];
+    final String token = tokens[position];
 
     if (token.equals("↦")) {
       return new ArrowToken();
