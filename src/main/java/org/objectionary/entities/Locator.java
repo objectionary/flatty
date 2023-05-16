@@ -11,16 +11,12 @@ public class Locator extends Entity {
         this.path = Arrays.asList(path.split("\\."));
     }
 
-    public Locator(List<String> path) {
-        this.path = path;
-    }
-
     public List<String> getPath() {
         return path;
     }
 
     @Override
     public String toString() {
-        return String.join(".", path);
+        return String.join(".", getPath());
     }
 }

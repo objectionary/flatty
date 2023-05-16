@@ -26,7 +26,7 @@ public class FlatObject extends Entity {
 
     @Override
     public String toString() {
-        return name + "(" + locator + ")";
+        return getName() + "(" + getLocator() + ")";
     }
 }
 

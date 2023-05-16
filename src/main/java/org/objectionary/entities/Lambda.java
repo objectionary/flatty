@@ -14,6 +14,6 @@ public class Lambda extends Entity {
 
     @Override
     public String toString() {
-        return function;
+        return getFunction();
     }
 }

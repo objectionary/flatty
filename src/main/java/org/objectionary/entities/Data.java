@@ -14,6 +14,6 @@ public class Data extends Entity {
 
     @Override
     public String toString() {
-        return String.valueOf(data);
+        return String.valueOf(getData());
     }
 }

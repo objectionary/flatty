@@ -28,7 +28,6 @@ import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import org.objectionary.entities.Entity;
 
-import java.io.IOException;
 import java.util.Map;
 
 /**
@@ -61,7 +60,7 @@ final class ParsingTests {
     }
 
     @Test
-    void printingTest() throws IOException {
+    void printingTest() {
         String output = objectsTreeToString(
                 Parser.parse(
                         "ν0(𝜋) ↦ ⟦ 𝜑 ↦ ν3(𝜋) ⟧\n" +
@@ -81,7 +80,7 @@ final class ParsingTests {
     }
 
     @Test
-    void printingTest2() throws IOException {
+    void printingTest2() {
         String output = objectsTreeToString(
                 Parser.parse(
                         "ν0(𝜋) ↦ ⟦ 𝜑 ↦ ν1( x ↦ ν2( y ↦ 0x0007 ) ) ⟧\n" +

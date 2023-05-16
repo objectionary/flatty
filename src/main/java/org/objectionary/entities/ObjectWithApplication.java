@@ -27,13 +27,13 @@ public class ObjectWithApplication extends Entity {
 
         int size = application.size();
         int count = 0;
-        for (Map.Entry<String, Entity> entry : application.entrySet()) {
+        for (Map.Entry<String, Entity> entry : getApplication().entrySet()) {
             buffer.append(entry.getKey()).append(" ↦ ").append(entry.getValue());
             if (++count < size) {
                 buffer.append(", ");
             }
         }
 
-        return name + "(" + buffer + ")";
+        return getName() + "(" + buffer + ")";
     }
 }

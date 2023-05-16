@@ -20,10 +20,6 @@ public class Tokenizer {
         this.position = 0;
     }
 
-    boolean hasNext() {
-        return position < tokens.length;
-    }
-
     void next() {
         ++position;
     }
