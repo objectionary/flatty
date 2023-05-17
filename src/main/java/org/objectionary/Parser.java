@@ -117,6 +117,12 @@ public final class Parser {
         return result;
     }
 
+    /**
+     * Creates an object.
+     * @param tokenizer The tokenizer to use.
+     * @param value The value to parse.
+     * @return The parsed entity.
+     */
     private static Entity createObject(final Tokenizer tokenizer, final String value) {
         final Entity result;
         if (value.contains(")")) {
