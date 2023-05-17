@@ -28,10 +28,4 @@ package org.objectionary.tokens;
  * @since 0.1.0
  */
 public class Token {
-
-    /**
-     * Removed constructor.
-     */
-    private Token() {
-    }
 }
