@@ -36,7 +36,6 @@ public class BracketToken extends Token {
 
     /**
      * Constructor.
-     *
      * @param state The state of the bracket.
      */
     public BracketToken(final BracketType state) {
@@ -44,6 +43,7 @@ public class BracketToken extends Token {
     }
 
     /**
+     * Returns the state of the bracket.
      * @return The state of the bracket.
      */
     public BracketType getState() {
@@ -54,7 +54,13 @@ public class BracketToken extends Token {
      * Enum for the bracket type.
      */
     public enum BracketType {
+        /**
+         * The open bracket.
+         */
         OPEN,
+        /**
+         * The close bracket.
+         */
         CLOSE
     }
 }
