@@ -148,7 +148,7 @@ public final class Parser {
         } else {
             tokenizer.next();
             final Map<String, Entity> application = readNested(tokenizer);
-            result = new ObjectWithApplication(value.substring(0, value.indexOf("(")), application);
+            result = new ObjectWithApplication(value.substring(0, value.indexOf('(')), application);
         }
         return result;
     }
@@ -165,7 +165,7 @@ public final class Parser {
         final Tokenizer tokenizer = new Tokenizer(line);
         final Token token = tokenizer.getToken();
         String name = ((StringToken) token).getValue();
-        name = name.substring(0, name.indexOf("("));
+        name = name.substring(0, name.indexOf('('));
         tokenizer.next();
         tokenizer.next();
         tokenizer.next();
