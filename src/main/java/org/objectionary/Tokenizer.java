@@ -11,32 +11,32 @@ import org.objectionary.tokens.Token;
 
 public class Tokenizer {
 
-  private final String[] tokens;
-  private int position;
+    private final String[] tokens;
+    private int position;
 
-  public Tokenizer(String input) {
-    this.tokens = input.split(" ");
-    this.position = 0;
-  }
-
-  void next() {
-    position++;
-  }
-
-  Token getToken() {
-    final String token = tokens[position];
-
-    if (token.equals("↦")) {
-      return new ArrowToken();
+    public Tokenizer(String input) {
+        this.tokens = input.split(" ");
+        this.position = 0;
     }
 
-    if (token.equals("(") || token.equals("⟦")) {
-      return new BracketToken(BracketToken.BracketType.OPEN);
-    }
-    if (token.equals(")") || token.equals("⟧")) {
-      return new BracketToken(BracketToken.BracketType.CLOSE);
+    void next() {
+        position++;
     }
 
-    return new StringToken(token);
-  }
+    Token getToken() {
+        final String token = tokens[position];
+
+        if (token.equals("↦")) {
+            return new ArrowToken();
+        }
+
+        if (token.equals("(") || token.equals("⟦")) {
+            return new BracketToken(BracketToken.BracketType.OPEN);
+        }
+        if (token.equals(")") || token.equals("⟧")) {
+            return new BracketToken(BracketToken.BracketType.CLOSE);
+        }
+
+        return new StringToken(token);
+    }
 }

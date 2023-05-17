@@ -5,18 +5,18 @@ import java.util.List;
 
 public class Locator extends Entity {
 
-  private final List<String> path;
+    private final List<String> path;
 
-  public Locator(String path) {
-    this.path = Arrays.asList(path.split("\\."));
-  }
+    public Locator(String path) {
+        this.path = Arrays.asList(path.split("\\."));
+    }
 
-  public List<String> getPath() {
-    return this.path;
-  }
+    public List<String> getPath() {
+        return this.path;
+    }
 
-  @Override
-  public String toString() {
-    return String.join(".", getPath());
-  }
+    @Override
+    public String toString() {
+        return String.join(".", getPath());
+    }
 }
