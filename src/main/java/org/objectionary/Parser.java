@@ -207,5 +207,4 @@ public final class Parser {
     private static boolean isObject(final String token) {
         return token.charAt(0) == 'ν';
     }
-
 }
