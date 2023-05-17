@@ -76,6 +76,6 @@ public final class FlatObject extends Entity {
 
     @Override
     public String toString() {
-        return this.getName() + "(" + this.getLocator() + ")";
+        return String.format("%s(%s)", this.getName(), this.getLocator());
     }
 }

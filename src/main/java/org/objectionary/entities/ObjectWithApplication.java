@@ -79,6 +79,6 @@ public final class ObjectWithApplication extends Entity {
                 buffer.append(", ");
             }
         }
-        return this.getName() + "(" + buffer + ")";
+        return String.format("%s(%s)", this.getName(), buffer);
     }
 }
