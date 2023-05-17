@@ -109,27 +109,28 @@ public final class Parser {
             result = new Data(Integer.parseInt(value.substring(2), 16));
         } else if (isLambda(value)) {
             result = new Lambda(value);
-        } else if (value.contains(")")) {
-            if (!isObject(value)) {
-                throw new IllegalArgumentException("Expected object");
-            }
+        } else if (isObject(value)) {
+            result = createObject(tokenizer, value);
+        } else {
+            throw new IllegalArgumentException("Unknown token");
+        }
+        return result;
+    }
+
+    private static Entity createObject(final Tokenizer tokenizer, final String value) {
+        final Entity result;
+        if (value.contains(")")) {
             result = new FlatObject(
-                    value.substring(0, value.indexOf('(')),
-                    value.substring(value.indexOf('(') + 1, value.indexOf(')'))
+                value.substring(0, value.indexOf('(')),
+                value.substring(value.indexOf('(') + 1, value.indexOf(')'))
             );
         } else if (value.contains("(")) {
-            if (!isObject(value)) {
-                throw new IllegalArgumentException("Expected object");
-            }
             tokenizer.next();
             final Map<String, Entity> application = readNested(tokenizer);
             result = new ObjectWithApplication(
-                    value.substring(0, value.indexOf('(')), application
+                value.substring(0, value.indexOf('(')), application
             );
         } else {
-            if (!isObject(value)) {
-                throw new IllegalArgumentException("Expected object");
-            }
             result = new FlatObject(value);
         }
         return result;
