@@ -25,7 +25,13 @@ package org.objectionary;
 
 import java.util.HashMap;
 import java.util.Map;
-import org.objectionary.entities.*;
+import org.objectionary.entities.Data;
+import org.objectionary.entities.Empty;
+import org.objectionary.entities.Entity;
+import org.objectionary.entities.FlatObject;
+import org.objectionary.entities.Lambda;
+import org.objectionary.entities.Locator;
+import org.objectionary.entities.ObjectWithApplication;
 import org.objectionary.tokens.ArrowToken;
 import org.objectionary.tokens.BracketToken;
 import org.objectionary.tokens.StringToken;
