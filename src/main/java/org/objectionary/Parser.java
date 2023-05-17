@@ -100,7 +100,7 @@ public class Parser {
      * @param tokenizer The tokenizer to use.
      * @return The parsed entity.
      */
-    private static Entity readOne(Tokenizer tokenizer) {
+    private static Entity readOne(final Tokenizer tokenizer) {
         final Token token = tokenizer.getToken();
         if (!(token instanceof StringToken)) {
             throw new RuntimeException("Expected string token");
@@ -141,7 +141,7 @@ public class Parser {
      * @param line   The line to parse.
      * @param result The result map.
      */
-    private static void parseOneLine(String line, Map<String, Map<String, Entity>> result) {
+    private static void parseOneLine(final String line, final Map<String, Map<String, Entity>> result) {
         final Tokenizer tokenizer = new Tokenizer(line);
         final Token token = tokenizer.getToken();
         String name = ((StringToken) token).getValue();
@@ -157,7 +157,7 @@ public class Parser {
      * @param input The input to parse.
      * @return The parsed map.
      */
-    public static Map<String, Map<String, Entity>> parse(String input) {
+    public static Map<String, Map<String, Entity>> parse(final String input) {
         final String[] lines = input.replace(",", "").split("\n");
         final Map<String, Map<String, Entity>> result = new HashMap<>();
         for (String line : lines) {

@@ -15,7 +15,7 @@ public class BracketToken extends Token {
      *
      * @param state The state of the bracket.
      */
-    public BracketToken(BracketType state) {
+    public BracketToken(final BracketType state) {
         this.state = state;
     }
 

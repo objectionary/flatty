@@ -23,7 +23,7 @@ public class ObjectWithApplication extends Entity {
      * @param name        The name of the object with application.
      * @param application The application of the object with application.
      */
-    public ObjectWithApplication(String name, Map<String, Entity> application) {
+    public ObjectWithApplication(final String name, final Map<String, Entity> application) {
         this.name = name;
         this.application = application;
     }

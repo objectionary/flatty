@@ -15,7 +15,7 @@ public class Lambda extends Entity {
      *
      * @param function The function of the lambda.
      */
-    public Lambda(String function) {
+    public Lambda(final String function) {
         this.function = function;
     }
 

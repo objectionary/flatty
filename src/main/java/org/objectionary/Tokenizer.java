@@ -29,7 +29,7 @@ public class Tokenizer {
      *
      * @param input The input string.
      */
-    public Tokenizer(String input) {
+    public Tokenizer(final String input) {
         this.tokens = input.split(" ");
         this.position = 0;
     }

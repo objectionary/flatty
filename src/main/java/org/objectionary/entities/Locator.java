@@ -18,7 +18,7 @@ public class Locator extends Entity {
      *
      * @param path The path of the locator.
      */
-    public Locator(String path) {
+    public Locator(final String path) {
         this.path = Arrays.asList(path.split("\\."));
     }
 

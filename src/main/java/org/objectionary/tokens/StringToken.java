@@ -14,7 +14,7 @@ public class StringToken extends Token {
      *
      * @param value The value of the string.
      */
-    public StringToken(String value) {
+    public StringToken(final String value) {
         this.value = value;
     }
 

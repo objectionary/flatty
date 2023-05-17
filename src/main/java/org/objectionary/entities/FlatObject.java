@@ -17,7 +17,7 @@ public class FlatObject extends Entity {
      *
      * @param name The name of the object.
      */
-    public FlatObject(String name) {
+    public FlatObject(final String name) {
         this.name = name;
         this.locator = "𝜋";
     }
@@ -28,7 +28,7 @@ public class FlatObject extends Entity {
      * @param name    The name of the object.
      * @param locator The locator of the object.
      */
-    public FlatObject(String name, String locator) {
+    public FlatObject(final String name, final String locator) {
         this.name = name;
         this.locator = locator;
     }
