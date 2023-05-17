@@ -23,11 +23,9 @@
  */
 package org.objectionary;
 
-import java.util.Map;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
-import org.objectionary.entities.Entity;
 
 /**
  * Parsing tests.
@@ -55,11 +53,10 @@ final class ParsingTests {
             "ν5 ↦ ⟦ 𝜑 ↦ ν3(ξ) ⟧",
         };
         final Parser parser = new Parser(String.join("\n", input));
+        final boolean equals = parser.parse().toString().equals(String.join("\n", correct));
         MatcherAssert.assertThat(
-            objectsTreeToString(
-                parser.parse()
-            ),
-            Matchers.equalTo(String.join("\n", correct))
+            equals,
+            Matchers.equalTo(true)
         );
     }
 
@@ -79,37 +76,10 @@ final class ParsingTests {
             "ν2 ↦ ⟦ y ↦ ø ⟧",
         };
         final Parser parser = new Parser(String.join("\n", input));
+        final boolean equals = parser.parse().toString().equals(String.join("\n", correct));
         MatcherAssert.assertThat(
-            objectsTreeToString(
-                parser.parse()
-            ),
-            Matchers.equalTo(String.join("\n", correct))
+            equals,
+            Matchers.equalTo(true)
         );
-    }
-
-    /**
-     * Test parsing.
-     * @param objects Objects to print
-     * @return String Representation of objects
-     */
-    private static String objectsTreeToString(final Map<String, Map<String, Entity>> objects) {
-        final StringBuilder builder = new StringBuilder();
-        for (final Map.Entry<String, Map<String, Entity>> entry : objects.entrySet()) {
-            builder.append(entry.getKey());
-            builder.append(" ↦ ⟦ ");
-            final int size = entry.getValue().size();
-            int count = 0;
-            for (final Map.Entry<String, Entity> binding : entry.getValue().entrySet()) {
-                builder.append(binding.getKey());
-                builder.append(" ↦ ");
-                builder.append(binding.getValue());
-                count += 1;
-                if (count < size) {
-                    builder.append(", ");
-                }
-            }
-            builder.append(" ⟧\n");
-        }
-        return builder.substring(0, builder.length() - 1);
     }
 }

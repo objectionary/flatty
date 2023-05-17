@@ -60,9 +60,9 @@ public final class Parser {
      * Parses the input.
      * @return The parsed map.
      */
-    public Map<String, Map<String, Entity>> parse() {
+    public ObjectsBox parse() {
         final String[] lines = this.input.replace(",", "").split("\n");
-        final Map<String, Map<String, Entity>> result = new HashMap<>();
+        final ObjectsBox result = new ObjectsBox();
         for (final String line : lines) {
             parseOneLine(line, result);
         }
@@ -76,7 +76,7 @@ public final class Parser {
      */
     private static void parseOneLine(
         final String line,
-        final Map<String, Map<String, Entity>> result
+        final ObjectsBox result
     ) {
         final Tokenizer tokenizer = new Tokenizer(line);
         final Token token = tokenizer.getToken();
@@ -85,8 +85,8 @@ public final class Parser {
         tokenizer.next();
         tokenizer.next();
         tokenizer.next();
-        final Map<String, Entity> bindings = readNested(tokenizer);
-        result.put(name, bindings);
+        final HashMap<String, Entity> bindings = readNested(tokenizer);
+        result.putObject(name, bindings);
     }
 
     /**
@@ -148,8 +148,8 @@ public final class Parser {
      * @param tokenizer The tokenizer to use.
      * @return The parsed entity.
      */
-    private static Map<String, Entity> readNested(final Tokenizer tokenizer) {
-        final Map<String, Entity> result = new HashMap<>();
+    private static HashMap<String, Entity> readNested(final Tokenizer tokenizer) {
+        final HashMap<String, Entity> result = new HashMap<>();
         while (true) {
             final Token token = tokenizer.getToken();
             if (token instanceof BracketToken) {
