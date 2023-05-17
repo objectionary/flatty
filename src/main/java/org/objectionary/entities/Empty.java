@@ -29,9 +29,6 @@ package org.objectionary.entities;
  */
 public class Empty extends Entity {
 
-    /**
-     * @return The string representation of the empty entity.
-     */
     @Override
     public String toString() {
         return "ø";

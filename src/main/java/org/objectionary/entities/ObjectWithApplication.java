@@ -66,9 +66,6 @@ public class ObjectWithApplication extends Entity {
         return application;
     }
 
-    /**
-     * @return The string representation of the object with application.
-     */
     @Override
     public String toString() {
         final StringBuilder buffer = new StringBuilder();

@@ -36,7 +36,6 @@ public class Lambda extends Entity {
 
     /**
      * Constructor.
-     *
      * @param function The function of the lambda.
      */
     public Lambda(final String function) {
@@ -44,15 +43,13 @@ public class Lambda extends Entity {
     }
 
     /**
+     * Returns the function of the lambda.
      * @return The function of the lambda.
      */
     public String getFunction() {
         return this.function;
     }
 
-    /**
-     * @return The string representation of the lambda.
-     */
     @Override
     public String toString() {
         return getFunction();

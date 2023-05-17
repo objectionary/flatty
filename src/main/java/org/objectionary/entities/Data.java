@@ -50,9 +50,6 @@ public class Data extends Entity {
         return this.data;
     }
 
-    /**
-     * @return The string representation of the data value.
-     */
     @Override
     public String toString() {
         return String.valueOf(getData());

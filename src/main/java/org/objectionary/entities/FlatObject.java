@@ -74,9 +74,6 @@ public class FlatObject extends Entity {
         return this.locator;
     }
 
-    /**
-     * @return The string representation of the object.
-     */
     @Override
     public String toString() {
         return getName() + "(" + getLocator() + ")";

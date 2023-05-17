@@ -53,9 +53,6 @@ public class Locator extends Entity {
         return this.path;
     }
 
-    /**
-     * @return The string representation of the locator.
-     */
     @Override
     public String toString() {
         return String.join(".", getPath());
