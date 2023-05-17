@@ -41,7 +41,7 @@ import org.objectionary.tokens.Token;
  * This class represents the parser.
  * @since 0.1.0
  */
-public class Parser {
+public final class Parser {
 
     /**
      * Checks if the token is empty.
@@ -99,8 +99,8 @@ public class Parser {
         while (true) {
             final Token token = tokenizer.getToken();
             if (token instanceof BracketToken) {
-                final BracketToken bracketToken = (BracketToken) token;
-                if (bracketToken.getState() == BracketToken.BracketType.CLOSE) {
+                final BracketToken bracket = (BracketToken) token;
+                if (bracket.getState() == BracketToken.BracketType.CLOSE) {
                     break;
                 }
             }
@@ -123,40 +123,36 @@ public class Parser {
      */
     private static Entity readOne(final Tokenizer tokenizer) {
         final Token token = tokenizer.getToken();
+        Entity result;
         if (!(token instanceof StringToken)) {
             throw new RuntimeException("Expected string token");
         }
         String value = ((StringToken) token).getValue();
         if (isEmpty(value)) {
-            return new Empty();
-        }
-        if (isLocator(value)) {
-            return new Locator(value);
-        }
-        if (isData(value)) {
-            return new Data(Integer.parseInt(value.substring(2), 16));
-        }
-        if (isLambda(value)) {
-            return new Lambda(value);
-        }
-        if (!isObject(value)) {
+            result = new Empty();
+        } else if (isLocator(value)) {
+            result = new Locator(value);
+        } else if (isData(value)) {
+            result = new Data(Integer.parseInt(value.substring(2), 16));
+        } else if (isLambda(value)) {
+            result = new Lambda(value);
+        } else if (!isObject(value)) {
             throw new RuntimeException("Unknown token: " + value);
-        }
-        // without application
-        if (!value.contains("(")) {
-            return new FlatObject(value);
-        }
-        // v(pi) or v(xi)
-        if (value.contains(")")) {
-            return new FlatObject(
+        } else if (!value.contains("(")) {
+            result = new FlatObject(value);
+        } else if (value.contains(")")) {
+            result = new FlatObject(
                     value.substring(0, value.indexOf("(")),
-                    value.substring(value.indexOf("(") + 1, value.indexOf(")")));
+                    value.substring(value.indexOf("(") + 1, value.indexOf(")"))
+            );
+        } else {
+            tokenizer.next();
+            final Map<String, Entity> application = readNested(tokenizer);
+            result = new ObjectWithApplication(value.substring(0, value.indexOf("(")), application);
         }
-        // v( ... )
-        tokenizer.next();
-        final Map<String, Entity> application = readNested(tokenizer);
-        return new ObjectWithApplication(value.substring(0, value.indexOf("(")), application);
+        return result;
     }
+
 
     /**
      * Parses one line.

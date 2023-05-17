@@ -72,12 +72,12 @@ public final class ObjectWithApplication extends Entity {
         final StringBuilder buffer = new StringBuilder();
         final int size = this.application.size();
         int count = 0;
-        for (Map.Entry<String, Entity> entry : getApplication().entrySet()) {
+        for (final Map.Entry<String, Entity> entry : this.getApplication().entrySet()) {
             buffer.append(entry.getKey()).append(" ↦ ").append(entry.getValue());
             if (++count < size) {
                 buffer.append(", ");
             }
         }
-        return getName() + "(" + buffer + ")";
+        return this.getName() + "(" + buffer + ")";
     }
 }

@@ -32,7 +32,7 @@ import org.objectionary.tokens.Token;
  * This class is representing the tokens stream.
  * @since 0.1.0
  */
-public class Tokenizer {
+public final class Tokenizer {
 
     /**
      * The tokens.

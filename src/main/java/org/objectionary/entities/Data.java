@@ -36,14 +36,14 @@ public final class Data extends Entity {
 
     /**
      * Constructor.
-     *
      * @param data The data value.
      */
-    public Data(int data) {
+    public Data(final int data) {
         this.data = data;
     }
 
     /**
+     * Get the data value.
      * @return The data value.
      */
     public int getData() {
@@ -52,6 +52,6 @@ public final class Data extends Entity {
 
     @Override
     public String toString() {
-        return String.valueOf(getData());
+        return String.valueOf(this.getData());
     }
 }
