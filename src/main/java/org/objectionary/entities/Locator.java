@@ -39,7 +39,6 @@ public class Locator extends Entity {
 
     /**
      * Constructor.
-     *
      * @param path The path of the locator.
      */
     public Locator(final String path) {
@@ -47,6 +46,7 @@ public class Locator extends Entity {
     }
 
     /**
+     * Returns the path of the locator.
      * @return The path of the locator.
      */
     public List<String> getPath() {
@@ -55,6 +55,6 @@ public class Locator extends Entity {
 
     @Override
     public String toString() {
-        return String.join(".", getPath());
+        return String.join(".", this.getPath());
     }
 }

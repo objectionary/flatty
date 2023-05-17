@@ -52,6 +52,6 @@ public class Lambda extends Entity {
 
     @Override
     public String toString() {
-        return getFunction();
+        return this.getFunction();
     }
 }
