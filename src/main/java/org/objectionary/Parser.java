@@ -46,7 +46,122 @@ public final class Parser {
     /**
      * The input.
      */
-    final String input;
+    private final String input;
+
+    /**
+     * Constructor.
+     * @param input The input to parse.
+     */
+    public Parser(final String input) {
+        this.input = input;
+    }
+
+    /**
+     * Parses the input.
+     * @return The parsed map.
+     */
+    public Map<String, Map<String, Entity>> parse() {
+        final String[] lines = this.input.replace(",", "").split("\n");
+        final Map<String, Map<String, Entity>> result = new HashMap<>();
+        for (final String line : lines) {
+            parseOneLine(line, result);
+        }
+        return result;
+    }
+
+    /**
+     * Parses one line.
+     * @param line The line to parse.
+     * @param result The result map.
+     */
+    private static void parseOneLine(
+            final String line,
+            final Map<String, Map<String, Entity>> result
+    ) {
+        final Tokenizer tokenizer = new Tokenizer(line);
+        final Token token = tokenizer.getToken();
+        String name = ((StringToken) token).getValue();
+        name = name.substring(0, name.indexOf('('));
+        tokenizer.next();
+        tokenizer.next();
+        tokenizer.next();
+        final Map<String, Entity> bindings = readNested(tokenizer);
+        result.put(name, bindings);
+    }
+
+    /**
+     * Reads one entity.
+     * @param tokenizer The tokenizer to use.
+     * @return The parsed entity.
+     */
+    private static Entity readOne(final Tokenizer tokenizer) {
+        final Token token = tokenizer.getToken();
+        if (!(token instanceof StringToken)) {
+            throw new IllegalArgumentException("Expected string token");
+        }
+        final String value = ((StringToken) token).getValue();
+        final Entity result;
+        if (isEmpty(value)) {
+            result = new Empty();
+        } else if (isLocator(value)) {
+            result = new Locator(value);
+        } else if (isData(value)) {
+            result = new Data(Integer.parseInt(value.substring(2), 16));
+        } else if (isLambda(value)) {
+            result = new Lambda(value);
+        } else if (value.contains(")")) {
+            if (!isObject(value)) {
+                throw new IllegalArgumentException("Expected object");
+            }
+            result = new FlatObject(
+                    value.substring(0, value.indexOf('(')),
+                    value.substring(value.indexOf('(') + 1, value.indexOf(')'))
+            );
+        } else if (value.contains("(")) {
+            if (!isObject(value)) {
+                throw new IllegalArgumentException("Expected object");
+            }
+            tokenizer.next();
+            final Map<String, Entity> application = readNested(tokenizer);
+            result = new ObjectWithApplication(
+                    value.substring(0, value.indexOf('(')), application
+            );
+        } else {
+            if (!isObject(value)) {
+                throw new IllegalArgumentException("Expected object");
+            }
+            result = new FlatObject(value);
+        }
+        return result;
+    }
+
+    /**
+     * Since there is no difference in the application and object structures (except the brackets),
+     * we will parse both of these objects with this function.
+     * @param tokenizer The tokenizer to use.
+     * @return The parsed entity.
+     */
+    private static Map<String, Entity> readNested(final Tokenizer tokenizer) {
+        final Map<String, Entity> result = new HashMap<>();
+        while (true) {
+            final Token token = tokenizer.getToken();
+            if (token instanceof BracketToken) {
+                final BracketToken bracket = (BracketToken) token;
+                if (bracket.getState() == BracketToken.BracketType.CLOSE) {
+                    break;
+                }
+            }
+            assert token instanceof StringToken;
+            final String name = ((StringToken) token).getValue();
+            tokenizer.next();
+            assert tokenizer.getToken() instanceof ArrowToken;
+            tokenizer.next();
+            final Entity entity = readOne(tokenizer);
+            result.put(name, entity);
+            tokenizer.next();
+        }
+        return result;
+    }
 
     /**
      * Checks if the token is empty.
@@ -93,118 +208,4 @@ public final class Parser {
         return token.charAt(0) == 'ν';
     }
 
-    /**
-     * Since there is no difference in the application and object structures (except the brackets),
-     * we will parse both of these objects with this function.
-     * @param tokenizer The tokenizer to use.
-     * @return The parsed entity.
-     */
-    private static Map<String, Entity> readNested(final Tokenizer tokenizer) {
-        final Map<String, Entity> result = new HashMap<>();
-        while (true) {
-            final Token token = tokenizer.getToken();
-            if (token instanceof BracketToken) {
-                final BracketToken bracket = (BracketToken) token;
-                if (bracket.getState() == BracketToken.BracketType.CLOSE) {
-                    break;
-                }
-            }
-            assert token instanceof StringToken;
-            final String name = ((StringToken) token).getValue();
-            tokenizer.next();
-            assert tokenizer.getToken() instanceof ArrowToken;
-            tokenizer.next();
-            final Entity entity = readOne(tokenizer);
-            result.put(name, entity);
-            tokenizer.next();
-        }
-        return result;
-    }
-
-    /**
-     * Reads one entity.
-     * @param tokenizer The tokenizer to use.
-     * @return The parsed entity.
-     */
-    private static Entity readOne(final Tokenizer tokenizer) {
-        final Token token = tokenizer.getToken();
-        if (!(token instanceof StringToken)) {
-            throw new IllegalArgumentException("Expected string token");
-        }
-        final String value = ((StringToken) token).getValue();
-        final Entity result;
-        if (isEmpty(value)) {
-            result = new Empty();
-        } else if (isLocator(value)) {
-            result = new Locator(value);
-        } else if (isData(value)) {
-            result = new Data(Integer.parseInt(value.substring(2), 16));
-        } else if (isLambda(value)) {
-            result = new Lambda(value);
-        } else if (value.contains(")")) {
-            if (!isObject(value)) {
-                throw new IllegalArgumentException("Expected object");
-            }
-            result = new FlatObject(
-                value.substring(0, value.indexOf('(')),
-                value.substring(value.indexOf('(') + 1, value.indexOf(')'))
-            );
-        } else if (value.contains("(")) {
-            if (!isObject(value)) {
-                throw new IllegalArgumentException("Expected object");
-            }
-            tokenizer.next();
-            final Map<String, Entity> application = readNested(tokenizer);
-            result = new ObjectWithApplication(
-                value.substring(0, value.indexOf('(')), application
-            );
-        } else {
-            if (!isObject(value)) {
-                throw new IllegalArgumentException("Expected object");
-            }
-            result = new FlatObject(value);
-        }
-        return result;
-    }
-
-    /**
-     * Parses one line.
-     * @param line The line to parse.
-     * @param result The result map.
-     */
-    private static void parseOneLine(
-        final String line,
-        final Map<String, Map<String, Entity>> result
-    ) {
-        final Tokenizer tokenizer = new Tokenizer(line);
-        final Token token = tokenizer.getToken();
-        String name = ((StringToken) token).getValue();
-        name = name.substring(0, name.indexOf('('));
-        tokenizer.next();
-        tokenizer.next();
-        tokenizer.next();
-        final Map<String, Entity> bindings = readNested(tokenizer);
-        result.put(name, bindings);
-    }
-
-    /**
-     * Parses the input.
-     * @return The parsed map.
-     */
-    public Map<String, Map<String, Entity>> parse() {
-        final String[] lines = this.input.replace(",", "").split("\n");
-        final Map<String, Map<String, Entity>> result = new HashMap<>();
-        for (final String line : lines) {
-            parseOneLine(line, result);
-        }
-        return result;
-    }
-
-    /**
-     * Constructor.
-     * @param input The input to parse.
-     */
-    public Parser(final String input) {
-        this.input = input;
-    }
 }
