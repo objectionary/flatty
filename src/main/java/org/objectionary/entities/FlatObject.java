@@ -45,8 +45,7 @@ public final class FlatObject extends Entity {
      * @param name The name of the object.
      */
     public FlatObject(final String name) {
-        this.name = name;
-        this.locator = "𝜋";
+        this(name, "𝜋");
     }
 
     /**
