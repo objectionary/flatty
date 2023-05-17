@@ -39,10 +39,10 @@ final class DummyTest {
     @Test
     void dummyTest() {
         MatcherAssert.assertThat(
-                4,
-                Matchers.equalTo(
-                        2 + 2
-                )
+            4,
+            Matchers.equalTo(
+                2 + 2
+            )
         );
     }
 }
