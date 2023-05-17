@@ -85,7 +85,7 @@ public final class Parser {
         tokenizer.next();
         tokenizer.next();
         tokenizer.next();
-        final HashMap<String, Entity> bindings = readNested(tokenizer);
+        final Map<String, Entity> bindings = readNested(tokenizer);
         result.putObject(name, bindings);
     }
 
@@ -148,8 +148,8 @@ public final class Parser {
      * @param tokenizer The tokenizer to use.
      * @return The parsed entity.
      */
-    private static HashMap<String, Entity> readNested(final Tokenizer tokenizer) {
-        final HashMap<String, Entity> result = new HashMap<>();
+    private static Map<String, Entity> readNested(final Tokenizer tokenizer) {
+        final Map<String, Entity> result = new HashMap<>();
         while (true) {
             final Token token = tokenizer.getToken();
             if (token instanceof BracketToken) {

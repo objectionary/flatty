@@ -28,7 +28,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-
 import org.objectionary.entities.Entity;
 
 /**
@@ -62,10 +61,13 @@ public final class ObjectsBox {
     public String toString() {
         final List<String> results = new ArrayList<>(this.box.size());
         for (final Map.Entry<String, Map<String, Entity>> entry : this.box.entrySet()) {
-            results.add(String.format("%s ↦ ⟦ %s ⟧", entry.getKey(), entry.getValue().entrySet().
-                stream()
-                .map(binding -> String.format("%s ↦ %s", binding.getKey(), binding.getValue()))
-                .collect(Collectors.joining(", "))));
+            results.add(String.format(
+                    "%s ↦ ⟦ %s ⟧",
+                    entry.getKey(),
+                    entry.getValue().entrySet().stream()
+                            .map(binding -> String.format("%s ↦ %s", binding.getKey(), binding.getValue()))
+                            .collect(Collectors.joining(", "))
+            ));
         }
         return String.join("\n", results);
     }
