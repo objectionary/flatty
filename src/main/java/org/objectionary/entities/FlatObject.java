@@ -27,7 +27,7 @@ package org.objectionary.entities;
  * This class represents the flat object entity.
  * @since 0.1.0
  */
-public class FlatObject extends Entity {
+public final class FlatObject extends Entity {
 
     /**
      * The name of the object.
@@ -51,8 +51,7 @@ public class FlatObject extends Entity {
 
     /**
      * Constructor.
-     *
-     * @param name    The name of the object.
+     * @param name The name of the object.
      * @param locator The locator of the object.
      */
     public FlatObject(final String name, final String locator) {
@@ -61,6 +60,7 @@ public class FlatObject extends Entity {
     }
 
     /**
+     * Returns the name of the object.
      * @return The name of the object.
      */
     public String getName() {
@@ -68,6 +68,7 @@ public class FlatObject extends Entity {
     }
 
     /**
+     * Returns the locator of the object.
      * @return The locator of the object.
      */
     public String getLocator() {
@@ -76,6 +77,6 @@ public class FlatObject extends Entity {
 
     @Override
     public String toString() {
-        return getName() + "(" + getLocator() + ")";
+        return this.getName() + "(" + this.getLocator() + ")";
     }
 }

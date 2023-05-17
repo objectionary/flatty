@@ -27,7 +27,7 @@ package org.objectionary.entities;
  * This class represents the lambda entity.
  * @since 0.1.0
  */
-public class Lambda extends Entity {
+public final class Lambda extends Entity {
 
     /**
      * The function of the lambda.

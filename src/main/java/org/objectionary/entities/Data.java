@@ -27,7 +27,7 @@ package org.objectionary.entities;
  * This class represents the data entity.
  * @since 0.1.0
  */
-public class Data extends Entity {
+public final class Data extends Entity {
 
     /**
      * The data value.

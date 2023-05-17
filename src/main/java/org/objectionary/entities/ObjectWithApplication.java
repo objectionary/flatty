@@ -29,7 +29,7 @@ import java.util.Map;
  * This class represents the object with application entity.
  * @since 0.1.0
  */
-public class ObjectWithApplication extends Entity {
+public final class ObjectWithApplication extends Entity {
 
     /**
      * The name of the object with application.
@@ -43,8 +43,7 @@ public class ObjectWithApplication extends Entity {
 
     /**
      * Constructor.
-     *
-     * @param name        The name of the object with application.
+     * @param name The name of the object with application.
      * @param application The application of the object with application.
      */
     public ObjectWithApplication(final String name, final Map<String, Entity> application) {
@@ -53,23 +52,25 @@ public class ObjectWithApplication extends Entity {
     }
 
     /**
+     * Returns the name of the object with application.
      * @return The name of the object with application.
      */
     public String getName() {
-        return name;
+        return this.name;
     }
 
     /**
+     * Returns the application of the object with application.
      * @return The application of the object with application.
      */
     public Map<String, Entity> getApplication() {
-        return application;
+        return this.application;
     }
 
     @Override
     public String toString() {
         final StringBuilder buffer = new StringBuilder();
-        final int size = application.size();
+        final int size = this.application.size();
         int count = 0;
         for (Map.Entry<String, Entity> entry : getApplication().entrySet()) {
             buffer.append(entry.getKey()).append(" ↦ ").append(entry.getValue());

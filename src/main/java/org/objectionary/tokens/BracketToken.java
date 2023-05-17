@@ -27,7 +27,7 @@ package org.objectionary.tokens;
  * This class represents the both application and object brackets.
  * @since 0.1.0
  */
-public class BracketToken extends Token {
+public final class BracketToken extends Token {
 
     /**
      * The state of the bracket.

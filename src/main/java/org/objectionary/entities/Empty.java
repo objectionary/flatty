@@ -27,7 +27,7 @@ package org.objectionary.entities;
  * This class represents the empty entity.
  * @since 0.1.0
  */
-public class Empty extends Entity {
+public final class Empty extends Entity {
 
     @Override
     public String toString() {
