@@ -75,8 +75,8 @@ public final class Parser {
      * @param result The result map.
      */
     private static void parseOneLine(
-            final String line,
-            final Map<String, Map<String, Entity>> result
+        final String line,
+        final Map<String, Map<String, Entity>> result
     ) {
         final Tokenizer tokenizer = new Tokenizer(line);
         final Token token = tokenizer.getToken();
