@@ -23,33 +23,30 @@
  */
 package org.objectionary;
 
-import org.objectionary.entities.Entity;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+
+import org.objectionary.entities.Entity;
 
 /**
  * This class represents the objects box.
  * @since 0.1.0
  */
 public final class ObjectsBox {
-    private final HashMap<String, HashMap<String, Entity>> box;
+
+    /**
+     * The box of objects.
+     */
+    private final Map<String, Map<String, Entity>> box;
 
     /**
      * Constructor.
      */
     public ObjectsBox() {
-        this(new HashMap<>());
-    }
-
-    /**
-     * Constructor.
-     * @param box The box.
-     */
-    public ObjectsBox(final HashMap<String, HashMap<String, Entity>> box) {
-        this.box = box;
+        this.box = new HashMap<>();
     }
 
     /**
@@ -57,30 +54,18 @@ public final class ObjectsBox {
      * @param name The name of the object.
      * @param bindings The bindings of the object.
      */
-    public void putObject(final String name, final HashMap<String, Entity> bindings) {
+    public void putObject(final String name, final Map<String, Entity> bindings) {
         this.box.put(name, bindings);
     }
 
     @Override
     public String toString() {
-        final List<String> results = new ArrayList<>();
-        for (final Map.Entry<String, HashMap<String, Entity>> entry : box.entrySet()) {
-            final StringBuilder builder = new StringBuilder();
-            builder.append(entry.getKey());
-            builder.append(" ↦ ⟦ ");
-            final int size = entry.getValue().size();
-            int count = 0;
-            for (final Map.Entry<String, Entity> binding : entry.getValue().entrySet()) {
-                builder.append(binding.getKey());
-                builder.append(" ↦ ");
-                builder.append(binding.getValue());
-                count += 1;
-                if (count < size) {
-                    builder.append(", ");
-                }
-            }
-            builder.append(" ⟧");
-            results.add(builder.toString());
+        final List<String> results = new ArrayList<>(this.box.size());
+        for (final Map.Entry<String, Map<String, Entity>> entry : this.box.entrySet()) {
+            results.add(String.format("%s ↦ ⟦ %s ⟧", entry.getKey(), entry.getValue().entrySet().
+                stream()
+                .map(binding -> String.format("%s ↦ %s", binding.getKey(), binding.getValue()))
+                .collect(Collectors.joining(", "))));
         }
         return String.join("\n", results);
     }
