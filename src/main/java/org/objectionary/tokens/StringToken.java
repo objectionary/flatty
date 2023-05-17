@@ -28,14 +28,14 @@ package org.objectionary.tokens;
  * @since 0.1.0
  */
 public class StringToken extends Token {
+
     /**
      * The value of the string.
      */
-    String value;
+    private final String value;
 
     /**
      * Constructor.
-     *
      * @param value The value of the string.
      */
     public StringToken(final String value) {
@@ -43,6 +43,7 @@ public class StringToken extends Token {
     }
 
     /**
+     * Gets the value of the string.
      * @return The value of the string.
      */
     public String getValue() {
