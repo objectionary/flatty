@@ -33,13 +33,13 @@ import org.objectionary.entities.Entity;
  * Parsing tests.
  * @since 0.1.0
  */
-public final class ParsingTests {
+final class ParsingTests {
 
     /**
      * Test parsing.
      */
     @Test
-    static void printingTest() {
+    void printingTest() {
         final String[] input = {
             "ν0(𝜋) ↦ ⟦ 𝜑 ↦ ν3(𝜋) ⟧",
             "ν1(𝜋) ↦ ⟦ Δ ↦ 0x002A ⟧",
@@ -67,7 +67,7 @@ public final class ParsingTests {
      * Test parsing with nested application.
      */
     @Test
-    static void printingWithNestingTest() {
+    void printingWithNestingTest() {
         final String[] input = {
             "ν0(𝜋) ↦ ⟦ 𝜑 ↦ ν1( x ↦ ν2( y ↦ 0x0007 ) ) ⟧",
             "ν1(𝜋) ↦ ⟦ x ↦ ø ⟧",
