@@ -23,14 +23,13 @@
  */
 package org.objectionary;
 
+import java.util.HashMap;
+import java.util.Map;
 import org.objectionary.entities.*;
 import org.objectionary.tokens.ArrowToken;
 import org.objectionary.tokens.BracketToken;
 import org.objectionary.tokens.StringToken;
 import org.objectionary.tokens.Token;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * This class represents the parser.

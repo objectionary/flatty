@@ -23,11 +23,11 @@
  */
 package org.objectionary;
 
+import java.util.Map;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import org.objectionary.entities.Entity;
-import java.util.Map;
 
 /**
  * Parsing tests.
