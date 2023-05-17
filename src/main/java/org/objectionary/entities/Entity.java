@@ -34,5 +34,6 @@ public class Entity {
      * This constructor is used to create an entity.
      */
     protected Entity() {
+        // Empty constructor
     }
 }
