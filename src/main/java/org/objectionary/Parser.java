@@ -43,6 +43,9 @@ import org.objectionary.tokens.Token;
  */
 public final class Parser {
 
+    /**
+     * The input.
+     */
     final String input;
 
     /**
