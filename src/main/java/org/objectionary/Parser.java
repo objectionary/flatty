@@ -123,11 +123,33 @@ public final class Parser {
      */
     private static Entity readOne(final Tokenizer tokenizer) {
         final Token token = tokenizer.getToken();
-        final Entity result;
         if (!(token instanceof StringToken)) {
             throw new IllegalArgumentException("Expected string token");
         }
         final String value = ((StringToken) token).getValue();
+        final Entity result;
+//        if (isEmpty(value)) {
+//            result = new Empty();
+//        } else if (isLocator(value)) {
+//            result = new Locator(value);
+//        } else if (isData(value)) {
+//            result = new Data(Integer.parseInt(value.substring(2), 16));
+//        } else if (isLambda(value)) {
+//            result = new Lambda(value);
+//        } else if (!isObject(value)) {
+//            throw new IllegalArgumentException("Unknown token");
+//        } else if (!value.contains("(")) {
+//            result = new FlatObject(value);
+//        } else if (value.contains(")")) {
+//            result = new FlatObject(
+//                    value.substring(0, value.indexOf('(')),
+//                    value.substring(value.indexOf('(') + 1, value.indexOf(')'))
+//            );
+//        } else {
+//            tokenizer.next();
+//            final Map<String, Entity> application = readNested(tokenizer);
+//            result = new ObjectWithApplication(value.substring(0, value.indexOf('(')), application);
+//        }
         if (isEmpty(value)) {
             result = new Empty();
         } else if (isLocator(value)) {
@@ -138,17 +160,17 @@ public final class Parser {
             result = new Lambda(value);
         } else if (!isObject(value)) {
             throw new IllegalArgumentException("Unknown token");
-        } else if (!value.contains("(")) {
-            result = new FlatObject(value);
         } else if (value.contains(")")) {
             result = new FlatObject(
                     value.substring(0, value.indexOf('(')),
                     value.substring(value.indexOf('(') + 1, value.indexOf(')'))
             );
-        } else {
+        } else if (value.contains("(")) {
             tokenizer.next();
             final Map<String, Entity> application = readNested(tokenizer);
             result = new ObjectWithApplication(value.substring(0, value.indexOf('(')), application);
+        } else {
+            result = new FlatObject(value);
         }
         return result;
     }
