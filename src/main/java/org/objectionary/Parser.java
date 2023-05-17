@@ -142,8 +142,8 @@ public final class Parser {
             result = new FlatObject(value);
         } else if (value.contains(")")) {
             result = new FlatObject(
-                    value.substring(0, value.indexOf("(")),
-                    value.substring(value.indexOf("(") + 1, value.indexOf(")"))
+                    value.substring(0, value.indexOf('(')),
+                    value.substring(value.indexOf('(') + 1, value.indexOf(')'))
             );
         } else {
             tokenizer.next();

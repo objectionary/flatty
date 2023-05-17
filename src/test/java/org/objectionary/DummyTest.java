@@ -37,7 +37,7 @@ public final class DummyTest {
      * Dummy test.
      */
     @Test
-    public void dummyTest() {
+    void dummyTest() {
         MatcherAssert.assertThat(
             4,
             Matchers.equalTo(

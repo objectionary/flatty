@@ -51,7 +51,8 @@ public final class ParsingTests {
                 builder.append(binding.getKey());
                 builder.append(" ↦ ");
                 builder.append(binding.getValue());
-                if (++count < size) {
+                count += 1;
+                if (count < size) {
                     builder.append(", ");
                 }
             }
@@ -64,7 +65,7 @@ public final class ParsingTests {
      * Test parsing.
      */
     @Test
-    public void printingTest() {
+    void printingTest() {
         final String output =
             objectsTreeToString(
                 Parser.parse(
@@ -75,7 +76,6 @@ public final class ParsingTests {
                     + "ν5(𝜋) ↦ ⟦ 𝜑 ↦ ν3(ξ) ⟧"
                 )
             );
-        System.out.println(output);
         MatcherAssert.assertThat(
             output,
             Matchers.equalTo(
@@ -92,7 +92,7 @@ public final class ParsingTests {
      * Test parsing with nested application.
      */
     @Test
-    public void printingWithNestingTest() {
+    void printingWithNestingTest() {
         final String output =
             objectsTreeToString(
                 Parser.parse(
@@ -101,7 +101,6 @@ public final class ParsingTests {
                         + "ν2(𝜋) ↦ ⟦ y ↦ ø ⟧"
                 )
             );
-        System.out.println(output);
         MatcherAssert.assertThat(
             output,
             Matchers.equalTo(
