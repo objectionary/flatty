@@ -28,14 +28,4 @@ package org.objectionary.entities;
  * @since 0.1.0
  */
 public abstract class Entity {
-
-    /**
-     * Returns a string representation of this entity. Subclasses should provide
-     * their own implementation that properly represents the state of the subclass.
-     * @return a string representation of this entity.
-     */
-    @Override
-    public String toString() {
-        return null;
-    }
 }

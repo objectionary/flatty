@@ -32,14 +32,14 @@ public final class Data extends Entity {
     /**
      * The data value.
      */
-    private final int data;
+    private final int value;
 
     /**
      * Constructor.
-     * @param data The data value.
+     * @param value The data value.
      */
-    public Data(final int data) {
-        this.data = data;
+    public Data(final int value) {
+        this.value = value;
     }
 
     /**
@@ -47,7 +47,7 @@ public final class Data extends Entity {
      * @return The data value.
      */
     public int getData() {
-        return this.data;
+        return this.value;
     }
 
     @Override

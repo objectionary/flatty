@@ -74,7 +74,8 @@ public final class ObjectWithApplication extends Entity {
         int count = 0;
         for (final Map.Entry<String, Entity> entry : this.getApplication().entrySet()) {
             buffer.append(entry.getKey()).append(" ↦ ").append(entry.getValue());
-            if (++count < size) {
+            count += 1;
+            if (count < size) {
                 buffer.append(", ");
             }
         }

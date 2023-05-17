@@ -58,7 +58,7 @@ public final class Parser {
      * @return True if the token is a locator.
      */
     private static boolean isLocator(final String token) {
-        return token.startsWith("𝜋") || token.startsWith("ξ");
+        return token.startsWith("𝜋.") || token.startsWith("ξ.");
     }
 
     /**
@@ -85,7 +85,7 @@ public final class Parser {
      * @return True if the token is an object.
      */
     private static boolean isObject(final String token) {
-        return token.startsWith("ν");
+        return token.charAt(0) == 'ν';
     }
 
     /**
@@ -123,11 +123,11 @@ public final class Parser {
      */
     private static Entity readOne(final Tokenizer tokenizer) {
         final Token token = tokenizer.getToken();
-        Entity result;
+        final Entity result;
         if (!(token instanceof StringToken)) {
-            throw new RuntimeException("Expected string token");
+            throw new IllegalArgumentException("Expected string token");
         }
-        String value = ((StringToken) token).getValue();
+        final String value = ((StringToken) token).getValue();
         if (isEmpty(value)) {
             result = new Empty();
         } else if (isLocator(value)) {
@@ -137,7 +137,7 @@ public final class Parser {
         } else if (isLambda(value)) {
             result = new Lambda(value);
         } else if (!isObject(value)) {
-            throw new RuntimeException("Unknown token: " + value);
+            throw new IllegalArgumentException("Unknown token");
         } else if (!value.contains("(")) {
             result = new FlatObject(value);
         } else if (value.contains(")")) {
@@ -153,13 +153,15 @@ public final class Parser {
         return result;
     }
 
-
     /**
      * Parses one line.
-     * @param line   The line to parse.
+     * @param line The line to parse.
      * @param result The result map.
      */
-    private static void parseOneLine(final String line, final Map<String, Map<String, Entity>> result) {
+    private static void parseOneLine(
+            final String line,
+            final Map<String, Map<String, Entity>> result
+    ) {
         final Tokenizer tokenizer = new Tokenizer(line);
         final Token token = tokenizer.getToken();
         String name = ((StringToken) token).getValue();
@@ -179,7 +181,7 @@ public final class Parser {
     public static Map<String, Map<String, Entity>> parse(final String input) {
         final String[] lines = input.replace(",", "").split("\n");
         final Map<String, Map<String, Entity>> result = new HashMap<>();
-        for (String line : lines) {
+        for (final String line : lines) {
             parseOneLine(line, result);
         }
         return result;
@@ -189,8 +191,5 @@ public final class Parser {
      * Removed constructor.
      */
     private Parser() {
-        throw new UnsupportedOperationException(
-            "This is a utility class and should not be instantiated."
-        );
     }
 }
