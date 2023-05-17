@@ -128,28 +128,6 @@ public final class Parser {
         }
         final String value = ((StringToken) token).getValue();
         final Entity result;
-//        if (isEmpty(value)) {
-//            result = new Empty();
-//        } else if (isLocator(value)) {
-//            result = new Locator(value);
-//        } else if (isData(value)) {
-//            result = new Data(Integer.parseInt(value.substring(2), 16));
-//        } else if (isLambda(value)) {
-//            result = new Lambda(value);
-//        } else if (!isObject(value)) {
-//            throw new IllegalArgumentException("Unknown token");
-//        } else if (!value.contains("(")) {
-//            result = new FlatObject(value);
-//        } else if (value.contains(")")) {
-//            result = new FlatObject(
-//                    value.substring(0, value.indexOf('(')),
-//                    value.substring(value.indexOf('(') + 1, value.indexOf(')'))
-//            );
-//        } else {
-//            tokenizer.next();
-//            final Map<String, Entity> application = readNested(tokenizer);
-//            result = new ObjectWithApplication(value.substring(0, value.indexOf('(')), application);
-//        }
         if (isEmpty(value)) {
             result = new Empty();
         } else if (isLocator(value)) {
@@ -158,18 +136,27 @@ public final class Parser {
             result = new Data(Integer.parseInt(value.substring(2), 16));
         } else if (isLambda(value)) {
             result = new Lambda(value);
-        } else if (!isObject(value)) {
-            throw new IllegalArgumentException("Unknown token");
         } else if (value.contains(")")) {
+            if (!isObject(value)) {
+                throw new IllegalArgumentException("Expected object");
+            }
             result = new FlatObject(
-                    value.substring(0, value.indexOf('(')),
-                    value.substring(value.indexOf('(') + 1, value.indexOf(')'))
+                value.substring(0, value.indexOf('(')),
+                value.substring(value.indexOf('(') + 1, value.indexOf(')'))
             );
         } else if (value.contains("(")) {
+            if (!isObject(value)) {
+                throw new IllegalArgumentException("Expected object");
+            }
             tokenizer.next();
             final Map<String, Entity> application = readNested(tokenizer);
-            result = new ObjectWithApplication(value.substring(0, value.indexOf('(')), application);
+            result = new ObjectWithApplication(
+                value.substring(0, value.indexOf('(')), application
+            );
         } else {
+            if (!isObject(value)) {
+                throw new IllegalArgumentException("Expected object");
+            }
             result = new FlatObject(value);
         }
         return result;
@@ -181,8 +168,8 @@ public final class Parser {
      * @param result The result map.
      */
     private static void parseOneLine(
-            final String line,
-            final Map<String, Map<String, Entity>> result
+        final String line,
+        final Map<String, Map<String, Entity>> result
     ) {
         final Tokenizer tokenizer = new Tokenizer(line);
         final Token token = tokenizer.getToken();
