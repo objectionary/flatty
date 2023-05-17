@@ -31,7 +31,7 @@ import org.junit.jupiter.api.Test;
  * Test skeleton.
  * @since 0.1.0
  */
-public final class DummyTest {
+final class DummyTest {
 
     /**
      * Dummy test.

@@ -33,7 +33,7 @@ import org.objectionary.entities.Entity;
  * Parsing tests.
  * @since 0.1.0
  */
-public final class ParsingTests {
+final class ParsingTests {
 
     /**
      * Test parsing.
