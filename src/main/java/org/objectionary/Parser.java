@@ -43,6 +43,8 @@ import org.objectionary.tokens.Token;
  */
 public final class Parser {
 
+    final String input;
+
     /**
      * Checks if the token is empty.
      * @param token The token to check.
@@ -184,11 +186,10 @@ public final class Parser {
 
     /**
      * Parses the input.
-     * @param input The input to parse.
      * @return The parsed map.
      */
-    public static Map<String, Map<String, Entity>> parse(final String input) {
-        final String[] lines = input.replace(",", "").split("\n");
+    public Map<String, Map<String, Entity>> parse() {
+        final String[] lines = this.input.replace(",", "").split("\n");
         final Map<String, Map<String, Entity>> result = new HashMap<>();
         for (final String line : lines) {
             parseOneLine(line, result);
@@ -197,8 +198,10 @@ public final class Parser {
     }
 
     /**
-     * Removed constructor.
+     * Constructor.
+     * @param input The input to parse.
      */
-    private Parser() {
+    public Parser(final String input) {
+        this.input = input;
     }
 }

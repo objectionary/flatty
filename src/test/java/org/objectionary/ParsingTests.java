@@ -80,9 +80,10 @@ final class ParsingTests {
             "ν3 ↦ ⟦ 𝜑 ↦ ν2(ξ), 𝛼1 ↦ ν1(𝜋), 𝛼0 ↦ ν1(𝜋) ⟧",
             "ν5 ↦ ⟦ 𝜑 ↦ ν3(ξ) ⟧",
         };
+        Parser parser = new Parser(String.join("\n", input));
         MatcherAssert.assertThat(
             objectsTreeToString(
-                Parser.parse(String.join("\n", input))
+                parser.parse()
             ),
             Matchers.equalTo(String.join("\n", correct))
         );
@@ -103,9 +104,10 @@ final class ParsingTests {
             "ν1 ↦ ⟦ x ↦ ø ⟧",
             "ν2 ↦ ⟦ y ↦ ø ⟧",
         };
+        Parser parser = new Parser(String.join("\n", input));
         MatcherAssert.assertThat(
             objectsTreeToString(
-                Parser.parse(String.join("\n", input))
+                parser.parse()
             ),
             Matchers.equalTo(String.join("\n", correct))
         );
