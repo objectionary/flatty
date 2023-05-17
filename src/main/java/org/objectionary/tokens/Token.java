@@ -1,4 +1,7 @@
 package org.objectionary.tokens;
 
-public class Token {
+/**
+ * This class represents the token.
+ */
+public abstract class Token {
 }

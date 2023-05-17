@@ -9,31 +9,63 @@ import org.objectionary.tokens.Token;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * This class represents the parser.
+ */
 public class Parser {
 
+    /**
+     * @param token The token to check.
+     * @return True if the token is empty.
+     */
     private static boolean isEmpty(final String token) {
         return token.equals("ø");
     }
 
+    /**
+     * @param token The token to check.
+     * @return True if the token is a locator.
+     */
     private static boolean isLocator(final String token) {
         return token.startsWith("𝜋") || token.startsWith("ξ");
     }
 
+    /**
+     * @param token The token to check.
+     * @return True if the token is data.
+     */
     private static boolean isData(final String token) {
         return token.startsWith("0x");
     }
 
+    /**
+     * @param token The token to check.
+     * @return True if the token is a lambda.
+     */
     private static boolean isLambda(final String token) {
         return token.startsWith("bool") || token.startsWith("int");
     }
 
+    /**
+     * @param token The token to check.
+     * @return True if the token is an object.
+     */
     private static boolean isObject(final String token) {
         return token.startsWith("ν");
     }
 
+//    /**
+//     * Since there is no difference in the application and object structures (except the brackets), we
+//     * will parse both of these objects with this function.
+//     */
+
+
     /**
-     * Since there is no difference in the application and object structures (except the brackets), we
-     * will parse both of these objects with this function.
+     * Since there is no difference in the application and object structures (except the brackets),
+     * we will parse both of these objects with this function.
+     *
+     * @param tokenizer The tokenizer to use.
+     * @return The parsed entity.
      */
     private static Map<String, Entity> readNested(final Tokenizer tokenizer) {
         final Map<String, Entity> result = new HashMap<>();
@@ -64,6 +96,10 @@ public class Parser {
         return result;
     }
 
+    /**
+     * @param tokenizer The tokenizer to use.
+     * @return The parsed entity.
+     */
     private static Entity readOne(Tokenizer tokenizer) {
         final Token token = tokenizer.getToken();
         if (!(token instanceof StringToken)) {
@@ -101,6 +137,10 @@ public class Parser {
         return new ObjectWithApplication(value.substring(0, value.indexOf("(")), application);
     }
 
+    /**
+     * @param line   The line to parse.
+     * @param result The result map.
+     */
     private static void parseOneLine(String line, Map<String, Map<String, Entity>> result) {
         final Tokenizer tokenizer = new Tokenizer(line);
         final Token token = tokenizer.getToken();
@@ -113,6 +153,10 @@ public class Parser {
         result.put(name, bindings);
     }
 
+    /**
+     * @param input The input to parse.
+     * @return The parsed map.
+     */
     public static Map<String, Map<String, Entity>> parse(String input) {
         final String[] lines = input.replace(",", "").split("\n");
         final Map<String, Map<String, Entity>> result = new HashMap<>();

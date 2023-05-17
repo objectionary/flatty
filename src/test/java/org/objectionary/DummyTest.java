@@ -34,6 +34,9 @@ import org.junit.jupiter.api.Test;
  */
 final class DummyTest {
 
+    /**
+     * Dummy test.
+     */
     @Test
     void dummyTest() {
         MatcherAssert.assertThat(

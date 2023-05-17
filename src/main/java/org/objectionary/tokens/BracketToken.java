@@ -1,21 +1,34 @@
 package org.objectionary.tokens;
 
 /**
- * It makes no sense to create two different types of object and application brackets separately.
- * TODO explain why
+ * This class represents the both application and object brackets.
  */
 public class BracketToken extends Token {
 
+    /**
+     * The state of the bracket.
+     */
     private final BracketType state;
 
+    /**
+     * Constructor.
+     *
+     * @param state The state of the bracket.
+     */
     public BracketToken(BracketType state) {
         this.state = state;
     }
 
+    /**
+     * @return The state of the bracket.
+     */
     public BracketType getState() {
         return this.state;
     }
 
+    /**
+     * Enum for the bracket type.
+     */
     public enum BracketType {
         OPEN,
         CLOSE
