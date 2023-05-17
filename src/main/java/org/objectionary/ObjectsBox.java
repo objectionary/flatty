@@ -65,8 +65,11 @@ public final class ObjectsBox {
                 String.format(
                     "%s ↦ ⟦ %s ⟧",
                     entry.getKey(),
-                    entry.getValue().entrySet().stream()
-                        .map(binding -> String.format("%s ↦ %s", binding.getKey(), binding.getValue()))
+                    entry.getValue().entrySet()
+                        .stream()
+                        .map(binding -> String.format(
+                            "%s ↦ %s", binding.getKey(), binding.getValue()
+                        ))
                         .collect(Collectors.joining(", "))
                 )
             );
