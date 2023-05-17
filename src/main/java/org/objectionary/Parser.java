@@ -44,6 +44,7 @@ import org.objectionary.tokens.Token;
 public class Parser {
 
     /**
+     * Checks if the token is empty.
      * @param token The token to check.
      * @return True if the token is empty.
      */
@@ -52,6 +53,7 @@ public class Parser {
     }
 
     /**
+     * Checks if the token is a locator.
      * @param token The token to check.
      * @return True if the token is a locator.
      */
@@ -60,6 +62,7 @@ public class Parser {
     }
 
     /**
+     * Checks if the token is a data.
      * @param token The token to check.
      * @return True if the token is data.
      */
@@ -68,6 +71,7 @@ public class Parser {
     }
 
     /**
+     * Checks if the token is a lambda.
      * @param token The token to check.
      * @return True if the token is a lambda.
      */
@@ -76,6 +80,7 @@ public class Parser {
     }
 
     /**
+     * Checks if the token is an object.
      * @param token The token to check.
      * @return True if the token is an object.
      */
@@ -83,49 +88,36 @@ public class Parser {
         return token.startsWith("ν");
     }
 
-//    /**
-//     * Since there is no difference in the application and object structures (except the brackets), we
-//     * will parse both of these objects with this function.
-//     */
-
-
     /**
      * Since there is no difference in the application and object structures (except the brackets),
      * we will parse both of these objects with this function.
-     *
      * @param tokenizer The tokenizer to use.
      * @return The parsed entity.
      */
     private static Map<String, Entity> readNested(final Tokenizer tokenizer) {
         final Map<String, Entity> result = new HashMap<>();
-
         while (true) {
             final Token token = tokenizer.getToken();
             if (token instanceof BracketToken) {
                 final BracketToken bracketToken = (BracketToken) token;
-
                 if (bracketToken.getState() == BracketToken.BracketType.CLOSE) {
                     break;
                 }
             }
             assert token instanceof StringToken;
             final String name = ((StringToken) token).getValue();
-
             tokenizer.next();
             assert tokenizer.getToken() instanceof ArrowToken;
             tokenizer.next();
-
             final Entity entity = readOne(tokenizer);
-
             result.put(name, entity);
-
             tokenizer.next();
         }
-
         return result;
     }
 
     /**
+     * Reads one entity.
      * @param tokenizer The tokenizer to use.
      * @return The parsed entity.
      */
@@ -167,6 +159,7 @@ public class Parser {
     }
 
     /**
+     * Parses one line.
      * @param line   The line to parse.
      * @param result The result map.
      */
@@ -183,6 +176,7 @@ public class Parser {
     }
 
     /**
+     * Parses the input.
      * @param input The input to parse.
      * @return The parsed map.
      */
@@ -193,5 +187,14 @@ public class Parser {
             parseOneLine(line, result);
         }
         return result;
+    }
+
+    /**
+     * Removed constructor.
+     */
+    private Parser() {
+        throw new UnsupportedOperationException(
+            "This is a utility class and should not be instantiated."
+        );
     }
 }
