@@ -5,6 +5,7 @@ import java.util.List;
 
 /**
  * This class represents the locator entity.
+ * @since 0.1.0
  */
 public class Locator extends Entity {
 

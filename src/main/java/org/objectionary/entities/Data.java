@@ -2,6 +2,7 @@ package org.objectionary.entities;
 
 /**
  * This class represents the data entity.
+ * @since 0.1.0
  */
 public class Data extends Entity {
 

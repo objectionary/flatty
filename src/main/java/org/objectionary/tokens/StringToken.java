@@ -2,6 +2,7 @@ package org.objectionary.tokens;
 
 /**
  * This class represents the string token.
+ * @since 0.1.0
  */
 public class StringToken extends Token {
     /**

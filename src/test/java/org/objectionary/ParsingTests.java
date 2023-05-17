@@ -27,40 +27,37 @@ import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import org.objectionary.entities.Entity;
-
 import java.util.Map;
 
 /**
  * Parsing tests.
- *
  * @since 0.1.0
  */
 final class ParsingTests {
 
     /**
-     * @param objects objects to print
-     * @return string representation of objects
+     * Test parsing.
+     * @param objects Objects to print
+     * @return string Representation of objects
      */
-    private static String objectsTreeToString(Map<String, Map<String, Entity>> objects) {
-        StringBuilder final_buffer = new StringBuilder();
-
-        for (Map.Entry<String, Map<String, Entity>> object_entry : objects.entrySet()) {
-            final_buffer.append(object_entry.getKey());
-            final_buffer.append(" ↦ ⟦ ");
-            int size = object_entry.getValue().size();
+    private static String objectsTreeToString(final Map<String, Map<String, Entity>> objects) {
+        StringBuilder builder = new StringBuilder();
+        for (final Map.Entry<String, Map<String, Entity>> entry : objects.entrySet()) {
+            builder.append(entry.getKey());
+            builder.append(" ↦ ⟦ ");
+            final int size = entry.getValue().size();
             int count = 0;
-            for (Map.Entry<String, Entity> binding : object_entry.getValue().entrySet()) {
-                final_buffer.append(binding.getKey());
-                final_buffer.append(" ↦ ");
-                final_buffer.append(binding.getValue());
+            for (Map.Entry<String, Entity> binding : entry.getValue().entrySet()) {
+                builder.append(binding.getKey());
+                builder.append(" ↦ ");
+                builder.append(binding.getValue());
                 if (++count < size) {
-                    final_buffer.append(", ");
+                    builder.append(", ");
                 }
             }
-            final_buffer.append(" ⟧\n");
+            builder.append(" ⟧\n");
         }
-
-        return final_buffer.toString();
+        return builder.toString();
     }
 
     /**
@@ -68,14 +65,16 @@ final class ParsingTests {
      */
     @Test
     void printingTest() {
-        String output =
+        final String output =
                 objectsTreeToString(
                         Parser.parse(
                                 "ν0(𝜋) ↦ ⟦ 𝜑 ↦ ν3(𝜋) ⟧\n"
                                         + "ν1(𝜋) ↦ ⟦ Δ ↦ 0x002A ⟧\n"
                                         + "ν2(𝜋) ↦ ⟦ λ ↦ int-add, ρ ↦ 𝜋.𝛼0, 𝛼0 ↦ 𝜋.𝛼1 ⟧\n"
                                         + "ν3(𝜋) ↦ ⟦ 𝜑 ↦ ν2(ξ), 𝛼0 ↦ ν1(𝜋), 𝛼1 ↦ ν1(𝜋) ⟧\n"
-                                        + "ν5(𝜋) ↦ ⟦ 𝜑 ↦ ν3(ξ) ⟧"));
+                                        + "ν5(𝜋) ↦ ⟦ 𝜑 ↦ ν3(ξ) ⟧"
+                        )
+                );
         System.out.println(output);
         MatcherAssert.assertThat(
                 output,
@@ -84,23 +83,29 @@ final class ParsingTests {
                                 + "ν1 ↦ ⟦ Δ ↦ 42 ⟧\n"
                                 + "ν2 ↦ ⟦ ρ ↦ 𝜋.𝛼0, λ ↦ int-add, 𝛼0 ↦ 𝜋.𝛼1 ⟧\n"
                                 + "ν3 ↦ ⟦ 𝜑 ↦ ν2(ξ), 𝛼1 ↦ ν1(𝜋), 𝛼0 ↦ ν1(𝜋) ⟧\n"
-                                + "ν5 ↦ ⟦ 𝜑 ↦ ν3(ξ) ⟧\n"));
+                                + "ν5 ↦ ⟦ 𝜑 ↦ ν3(ξ) ⟧\n"
+                )
+        );
     }
 
     /**
      * Test parsing with nested application.
      */
     @Test
-    void printingTest2() {
-        String output =
+    void printingWithNestingTest() {
+        final String output =
                 objectsTreeToString(
                         Parser.parse(
                                 "ν0(𝜋) ↦ ⟦ 𝜑 ↦ ν1( x ↦ ν2( y ↦ 0x0007 ) ) ⟧\n"
                                         + "ν1(𝜋) ↦ ⟦ x ↦ ø ⟧\n"
-                                        + "ν2(𝜋) ↦ ⟦ y ↦ ø ⟧"));
+                                        + "ν2(𝜋) ↦ ⟦ y ↦ ø ⟧"
+                        )
+                );
         System.out.println(output);
         MatcherAssert.assertThat(
                 output,
-                Matchers.equalTo("ν0 ↦ ⟦ 𝜑 ↦ ν1(x ↦ ν2(y ↦ 7)) ⟧\nν1 ↦ ⟦ x ↦ ø ⟧\nν2 ↦ ⟦ y ↦ ø ⟧\n"));
+                Matchers.equalTo("ν0 ↦ ⟦ 𝜑 ↦ ν1(x ↦ ν2(y ↦ 7)) ⟧\nν1 ↦ ⟦ x ↦ ø ⟧\nν2 ↦ ⟦ y ↦ ø ⟧\n"
+                )
+        );
     }
 }

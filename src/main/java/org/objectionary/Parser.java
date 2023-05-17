@@ -11,6 +11,7 @@ import java.util.Map;
 
 /**
  * This class represents the parser.
+ * @since 0.1.0
  */
 public class Parser {
 

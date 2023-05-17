@@ -24,7 +24,6 @@
 
 /**
  * All nessessary classes for working with Flatty.
- *
  * @since 0.1.0
  */
 package org.objectionary;

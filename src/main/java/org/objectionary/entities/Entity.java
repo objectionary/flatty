@@ -2,6 +2,7 @@ package org.objectionary.entities;
 
 /**
  * This class represents the entity.
+ * @since 0.1.0
  */
 public abstract class Entity {
     /**

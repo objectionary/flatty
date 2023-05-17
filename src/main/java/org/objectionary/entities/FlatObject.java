@@ -1,5 +1,9 @@
 package org.objectionary.entities;
 
+/**
+ * This class represents the flat object entity.
+ * @since 0.1.0
+ */
 public class FlatObject extends Entity {
 
     /**

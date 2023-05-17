@@ -29,7 +29,6 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Test skeleton.
- *
  * @since 0.1.0
  */
 final class DummyTest {
