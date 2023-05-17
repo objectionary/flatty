@@ -58,23 +58,33 @@ public class Tokenizer {
      * Increments the position.
      */
     void next() {
-        position++;
+        this.position += 1;
     }
 
     /**
+     * Returns the current token.
      * @return The current token.
      */
     Token getToken() {
-        final String token = tokens[position];
-        if (token.equals("↦")) {
-            return new ArrowToken();
+        final String token = this.tokens[this.position];
+        Token result;
+        switch (token) {
+            case "↦":
+                result = new ArrowToken();
+                break;
+            case "(":
+            case "⟦":
+                result = new BracketToken(BracketToken.BracketType.OPEN);
+                break;
+            case ")":
+            case "⟧":
+                result = new BracketToken(BracketToken.BracketType.CLOSE);
+                break;
+            default:
+                result = new StringToken(token);
+                break;
         }
-        if (token.equals("(") || token.equals("⟦")) {
-            return new BracketToken(BracketToken.BracketType.OPEN);
-        }
-        if (token.equals(")") || token.equals("⟧")) {
-            return new BracketToken(BracketToken.BracketType.CLOSE);
-        }
-        return new StringToken(token);
+        return result;
     }
+
 }
