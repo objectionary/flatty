@@ -31,13 +31,13 @@ import org.junit.jupiter.api.Test;
  * Test skeleton.
  * @since 0.1.0
  */
-final class DummyTest {
+public final class DummyTest {
 
     /**
      * Dummy test.
      */
     @Test
-    void dummyTest() {
+    public void dummyTest() {
         MatcherAssert.assertThat(
             4,
             Matchers.equalTo(

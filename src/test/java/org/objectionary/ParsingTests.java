@@ -33,7 +33,7 @@ import org.objectionary.entities.Entity;
  * Parsing tests.
  * @since 0.1.0
  */
-final class ParsingTests {
+public final class ParsingTests {
 
     /**
      * Test parsing.
@@ -64,7 +64,7 @@ final class ParsingTests {
      * Test parsing.
      */
     @Test
-    void printingTest() {
+    public void printingTest() {
         final String output =
             objectsTreeToString(
                 Parser.parse(
@@ -92,7 +92,7 @@ final class ParsingTests {
      * Test parsing with nested application.
      */
     @Test
-    void printingWithNestingTest() {
+    public void printingWithNestingTest() {
         final String output =
             objectsTreeToString(
                 Parser.parse(
