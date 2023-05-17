@@ -67,7 +67,7 @@ public class Tokenizer {
      */
     Token getToken() {
         final String token = this.tokens[this.position];
-        Token result;
+        final Token result;
         switch (token) {
             case "↦":
                 result = new ArrowToken();
