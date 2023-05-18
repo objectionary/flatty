@@ -21,9 +21,40 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+package org.objectionary.entities;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
- * Flatty tests.
+ * This class represents the locator entity.
  * @since 0.1.0
  */
-package org.objectionary;
+public final class Locator extends Entity {
+
+    /**
+     * The path of the locator.
+     */
+    private final List<String> path;
+
+    /**
+     * Constructor.
+     * @param path The path of the locator.
+     */
+    public Locator(final String path) {
+        this.path = Arrays.asList(path.split("\\."));
+    }
+
+    /**
+     * Returns the path of the locator.
+     * @return The path of the locator.
+     */
+    public List<String> getPath() {
+        return this.path;
+    }
+
+    @Override
+    public String toString() {
+        return String.join(".", this.getPath());
+    }
+}

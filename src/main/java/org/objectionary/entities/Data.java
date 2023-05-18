@@ -21,9 +21,37 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+package org.objectionary.entities;
 
 /**
- * Flatty tests.
+ * This class represents the data entity.
  * @since 0.1.0
  */
-package org.objectionary;
+public final class Data extends Entity {
+
+    /**
+     * The data value.
+     */
+    private final int value;
+
+    /**
+     * Constructor.
+     * @param value The data value.
+     */
+    public Data(final int value) {
+        this.value = value;
+    }
+
+    /**
+     * Get the data value.
+     * @return The data value.
+     */
+    public int getData() {
+        return this.value;
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(this.getData());
+    }
+}

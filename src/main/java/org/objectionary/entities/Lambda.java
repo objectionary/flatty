@@ -21,9 +21,37 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+package org.objectionary.entities;
 
 /**
- * Flatty tests.
+ * This class represents the lambda entity.
  * @since 0.1.0
  */
-package org.objectionary;
+public final class Lambda extends Entity {
+
+    /**
+     * The function of the lambda.
+     */
+    private final String function;
+
+    /**
+     * Constructor.
+     * @param function The function of the lambda.
+     */
+    public Lambda(final String function) {
+        this.function = function;
+    }
+
+    /**
+     * Returns the function of the lambda.
+     * @return The function of the lambda.
+     */
+    public String getFunction() {
+        return this.function;
+    }
+
+    @Override
+    public String toString() {
+        return this.getFunction();
+    }
+}

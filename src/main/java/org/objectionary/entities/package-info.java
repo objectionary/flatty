@@ -23,7 +23,6 @@
  */
 
 /**
- * Flatty tests.
- * @since 0.1.0
+ * All necessary entities for working with Flatty.
  */
-package org.objectionary;
+package org.objectionary.entities;

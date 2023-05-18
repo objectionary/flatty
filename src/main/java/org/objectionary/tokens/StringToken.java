@@ -21,9 +21,32 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+package org.objectionary.tokens;
 
 /**
- * Flatty tests.
+ * This class represents the string token.
  * @since 0.1.0
  */
-package org.objectionary;
+public final class StringToken extends Token {
+
+    /**
+     * The value of the string.
+     */
+    private final String value;
+
+    /**
+     * Constructor.
+     * @param value The value of the string.
+     */
+    public StringToken(final String value) {
+        this.value = value;
+    }
+
+    /**
+     * Gets the value of the string.
+     * @return The value of the string.
+     */
+    public String getValue() {
+        return this.value;
+    }
+}

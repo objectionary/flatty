@@ -21,9 +21,61 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+package org.objectionary.entities;
 
 /**
- * Flatty tests.
+ * This class represents the flat object entity.
  * @since 0.1.0
  */
-package org.objectionary;
+public final class FlatObject extends Entity {
+
+    /**
+     * The name of the object.
+     */
+    private final String name;
+
+    /**
+     * The locator of the object.
+     */
+    private final String locator;
+
+    /**
+     * Constructor.
+     *
+     * @param name The name of the object.
+     */
+    public FlatObject(final String name) {
+        this(name, "𝜋");
+    }
+
+    /**
+     * Constructor.
+     * @param name The name of the object.
+     * @param locator The locator of the object.
+     */
+    public FlatObject(final String name, final String locator) {
+        this.name = name;
+        this.locator = locator;
+    }
+
+    /**
+     * Returns the name of the object.
+     * @return The name of the object.
+     */
+    public String getName() {
+        return this.name;
+    }
+
+    /**
+     * Returns the locator of the object.
+     * @return The locator of the object.
+     */
+    public String getLocator() {
+        return this.locator;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s(%s)", this.getName(), this.getLocator());
+    }
+}

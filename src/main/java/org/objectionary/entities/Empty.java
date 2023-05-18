@@ -21,9 +21,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+package org.objectionary.entities;
 
 /**
- * Flatty tests.
+ * This class represents the empty entity.
  * @since 0.1.0
  */
-package org.objectionary;
+public final class Empty extends Entity {
+
+    @Override
+    public String toString() {
+        return "ø";
+    }
+}

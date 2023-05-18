@@ -21,9 +21,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+package org.objectionary.entities;
 
 /**
- * Flatty tests.
+ * This class represents the entity.
  * @since 0.1.0
  */
-package org.objectionary;
+public class Entity {
+
+    /**
+     * Protected constructor.
+     * This constructor is used to create an entity.
+     */
+    protected Entity() {
+        // Empty constructor
+    }
+}

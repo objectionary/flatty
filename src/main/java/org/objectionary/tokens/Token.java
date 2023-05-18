@@ -21,9 +21,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+package org.objectionary.tokens;
 
 /**
- * Flatty tests.
+ * This class represents the token.
  * @since 0.1.0
  */
-package org.objectionary;
+public class Token {
+}

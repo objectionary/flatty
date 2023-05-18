@@ -21,27 +21,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package org.objectionary;
-
-import java.io.IOException;
-import org.hamcrest.MatcherAssert;
-import org.hamcrest.Matchers;
-import org.junit.jupiter.api.Test;
+package org.objectionary.tokens;
 
 /**
- * Test skeleton.
- *
+ * This class represents the arrow token.
  * @since 0.1.0
  */
-final class DummyTest {
-
-    @Test
-    void dummyTest() throws IOException {
-        MatcherAssert.assertThat(
-            4,
-            Matchers.equalTo(
-                2 + 2
-            )
-        );
-    }
+public final class ArrowToken extends Token {
 }
