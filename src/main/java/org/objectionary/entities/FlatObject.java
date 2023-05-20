@@ -78,4 +78,14 @@ public final class FlatObject extends Entity {
     public String toString() {
         return String.format("%s(%s)", this.getName(), this.getLocator());
     }
+
+    @Override
+    public Entity copy() {
+        return new FlatObject(this.getName(), this.getLocator());
+    }
+
+    @Override
+    public Entity reframe() {
+        return new FlatObject(this.getName(), "𝜋".concat(this.getLocator()));
+    }
 }

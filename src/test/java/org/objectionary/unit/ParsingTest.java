@@ -21,11 +21,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package org.objectionary;
+package org.objectionary.unit;
 
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
+import org.objectionary.Parser;
 
 /**
  * Test skeleton.
@@ -46,11 +47,11 @@ final class ParsingTest {
             "ν5(𝜋) ↦ ⟦ 𝜑 ↦ ν3(ξ) ⟧",
         };
         final String[] correct = {
-            "ν0 ↦ ⟦ 𝜑 ↦ ν3(𝜋) ⟧",
-            "ν1 ↦ ⟦ Δ ↦ 42 ⟧",
-            "ν2 ↦ ⟦ ρ ↦ 𝜋.𝛼0, λ ↦ int-add, 𝛼0 ↦ 𝜋.𝛼1 ⟧",
-            "ν3 ↦ ⟦ 𝜑 ↦ ν2(ξ), 𝛼1 ↦ ν1(𝜋), 𝛼0 ↦ ν1(𝜋) ⟧",
-            "ν5 ↦ ⟦ 𝜑 ↦ ν3(ξ) ⟧",
+            "ν0(𝜋) ↦ ⟦ 𝜑 ↦ ν3(𝜋) ⟧",
+            "ν1(𝜋) ↦ ⟦ Δ ↦ 0x002A ⟧",
+            "ν2(𝜋) ↦ ⟦ λ ↦ int-add, ρ ↦ 𝜋.𝛼0, 𝛼0 ↦ 𝜋.𝛼1 ⟧",
+            "ν3(𝜋) ↦ ⟦ 𝜑 ↦ ν2(ξ), 𝛼1 ↦ ν1(𝜋), 𝛼0 ↦ ν1(𝜋) ⟧",
+            "ν5(𝜋) ↦ ⟦ 𝜑 ↦ ν3(ξ) ⟧",
         };
         final Parser parser = new Parser(String.join("\n", input));
         final boolean equals = parser.parse().toString().equals(String.join("\n", correct));
@@ -71,9 +72,9 @@ final class ParsingTest {
             "ν2(𝜋) ↦ ⟦ y ↦ ø ⟧",
         };
         final String[] correct = {
-            "ν0 ↦ ⟦ 𝜑 ↦ ν1(x ↦ ν2(y ↦ 7)) ⟧",
-            "ν1 ↦ ⟦ x ↦ ø ⟧",
-            "ν2 ↦ ⟦ y ↦ ø ⟧",
+            "ν0(𝜋) ↦ ⟦ 𝜑 ↦ ν1(x ↦ ν2(y ↦ 0x0007)) ⟧",
+            "ν1(𝜋) ↦ ⟦ x ↦ ø ⟧",
+            "ν2(𝜋) ↦ ⟦ y ↦ ø ⟧",
         };
         final Parser parser = new Parser(String.join("\n", input));
         final boolean equals = parser.parse().toString().equals(String.join("\n", correct));

@@ -33,4 +33,14 @@ public final class Empty extends Entity {
     public String toString() {
         return "ø";
     }
+
+    @Override
+    public Entity copy() {
+        return new Empty();
+    }
+
+    @Override
+    public Entity reframe() {
+        return this;
+    }
 }

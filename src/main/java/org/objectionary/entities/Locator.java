@@ -35,14 +35,14 @@ public final class Locator extends Entity {
     /**
      * The path of the locator.
      */
-    private final List<String> path;
+    private final String path;
 
     /**
      * Constructor.
      * @param path The path of the locator.
      */
     public Locator(final String path) {
-        this.path = Arrays.asList(path.split("\\."));
+        this.path = path;
     }
 
     /**
@@ -50,11 +50,21 @@ public final class Locator extends Entity {
      * @return The path of the locator.
      */
     public List<String> getPath() {
-        return this.path;
+        return Arrays.asList(this.path.split("\\."));
     }
 
     @Override
     public String toString() {
-        return String.join(".", this.getPath());
+        return this.path;
+    }
+
+    @Override
+    public Entity copy() {
+        return new Locator(String.join(".", this.getPath()));
+    }
+
+    @Override
+    public Entity reframe() {
+        return new Locator("π.".concat(String.join(".", this.path).replace("ξ.", "")));
     }
 }

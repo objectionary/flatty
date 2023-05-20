@@ -54,4 +54,14 @@ public final class Lambda extends Entity {
     public String toString() {
         return this.getFunction();
     }
+
+    @Override
+    public Entity copy() {
+        return new Lambda(this.getFunction());
+    }
+
+    @Override
+    public Entity reframe() {
+        return this;
+    }
 }

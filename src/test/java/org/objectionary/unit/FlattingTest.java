@@ -21,31 +21,44 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package org.objectionary.entities;
+package org.objectionary.unit;
+
+import org.junit.jupiter.api.Test;
+import org.objectionary.Flatter;
+import org.objectionary.Parser;
 
 /**
- * This class represents the entity.
+ * Test skeleton.
  * @since 0.1.0
  */
-public abstract class Entity {
+final class FlattingTest {
 
     /**
-     * Protected constructor.
-     * This constructor is used to create an entity.
+     * Flatting test.
      */
-    protected Entity() {
-        // Empty constructor
+    @Test
+    void flatThroughLayersTest() {
+        final String[] input = {
+            "ν0(𝜋) ↦ ⟦ z ↦ 0x0007, 𝜑 ↦ ν1( x ↦ ν2( y ↦ ξ.z ) ) ⟧",
+            "ν1(𝜋) ↦ ⟦ x ↦ ø, 𝜑 ↦ ξ.x ⟧",
+            "ν2(𝜋) ↦ ⟦ y ↦ ø, 𝜑 ↦ ξ.y ⟧",
+        };
+        final Parser parser = new Parser(String.join("\n", input));
+        final Flatter flatter = new Flatter(parser.parse());
+        final String output = flatter.flat().toString();
+        System.out.println(output);
     }
 
-    /**
-     * Returns the deep copy of the entity.
-     * @return The deep copy of the entity.
-     */
-    public abstract Entity copy();
+    @Test
+    void flatMultiplicationTest() {
+        final String[] input = {
+            "ν0(𝜋) ↦ ⟦ x ↦ ø, 𝜑 ↦ ν1( a ↦ ξ.x, b ↦ ξ.x ) ⟧",
+            "ν1(𝜋) ↦ ⟦ λ ↦ int-times, a ↦ ø, b ↦ ø ⟧",
+        };
+        final Parser parser = new Parser(String.join("\n", input));
+        final Flatter flatter = new Flatter(parser.parse());
+        final String output = flatter.flat().toString();
+        System.out.println(output);
+    }
 
-    /**
-     * Add one pi to the entity.
-     * @return The entity with one pi added.
-     */
-    public abstract Entity reframe();
 }

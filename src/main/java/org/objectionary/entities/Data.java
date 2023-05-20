@@ -52,6 +52,16 @@ public final class Data extends Entity {
 
     @Override
     public String toString() {
-        return String.valueOf(this.getData());
+        return String.format("0x%04X", this.value);
+    }
+
+    @Override
+    public Entity copy() {
+        return new Data(this.getData());
+    }
+
+    @Override
+    public Entity reframe() {
+        return this;
     }
 }

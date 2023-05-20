@@ -21,31 +21,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package org.objectionary.entities;
 
 /**
- * This class represents the entity.
+ * Integration tests.
  * @since 0.1.0
  */
-public abstract class Entity {
-
-    /**
-     * Protected constructor.
-     * This constructor is used to create an entity.
-     */
-    protected Entity() {
-        // Empty constructor
-    }
-
-    /**
-     * Returns the deep copy of the entity.
-     * @return The deep copy of the entity.
-     */
-    public abstract Entity copy();
-
-    /**
-     * Add one pi to the entity.
-     * @return The entity with one pi added.
-     */
-    public abstract Entity reframe();
-}
+package org.objectionary.integration;
