@@ -65,6 +65,6 @@ public final class Locator extends Entity {
 
     @Override
     public Entity reframe() {
-        return new Locator("π.".concat(String.join(".", this.path).replace("ξ.", "")));
+        return new Locator("𝜋.".concat(String.join(".", this.path).replace("ξ.", "")));
     }
 }

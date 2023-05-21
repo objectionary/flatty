@@ -49,16 +49,22 @@ final class FlattingTest {
         System.out.println(output);
     }
 
+    /**
+     * Flatting test.
+     */
     @Test
     void flatMultiplicationTest() {
         final String[] input = {
-            "ν0(𝜋) ↦ ⟦ x ↦ ø, 𝜑 ↦ ν1( a ↦ ξ.x, b ↦ ξ.x ) ⟧",
-            "ν1(𝜋) ↦ ⟦ λ ↦ int-times, a ↦ ø, b ↦ ø ⟧",
+            "ν0(𝜋) ↦ ⟦ 𝜑 ↦ ν1(𝜋) ⟧",
+            "ν1(𝜋) ↦ ⟦ x ↦ ν3, 𝜑 ↦ ν2( a ↦ ξ.x, b ↦ ξ.x ) ⟧",
+            "ν2(𝜋) ↦ ⟦ λ ↦ int-times, a ↦ ø, b ↦ ø ⟧",
+            "ν3(𝜋) ↦ ⟦ Δ ↦ 0x0007 ⟧",
         };
         final Parser parser = new Parser(String.join("\n", input));
         final Flatter flatter = new Flatter(parser.parse());
         final String output = flatter.flat().toString();
         System.out.println(output);
     }
+
 
 }

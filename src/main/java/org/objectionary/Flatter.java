@@ -25,6 +25,10 @@ package org.objectionary;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Queue;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Set;
 import org.objectionary.entities.Entity;
 import org.objectionary.entities.FlatObject;
 import org.objectionary.entities.ObjectWithApplication;
@@ -82,6 +86,7 @@ public final class Flatter {
                 }
             }
         }
+        removeUnusedObjects();
         return this.box;
     }
 
@@ -110,7 +115,39 @@ public final class Flatter {
         Flatter.counter += 1;
         box.putObject(name, bindings);
         user.put(key, new FlatObject(name, "ξ"));
+
         // TODO add graph transformation
+    }
+
+    /**
+     * Removes unused objects from the box.
+     */
+    private void removeUnusedObjects() {
+        final Set<String> uses = new HashSet<>();
+
+        final Queue<String> queue = new LinkedList<>();
+        queue.add("ν0");
+
+        while (!queue.isEmpty()) {
+            final String name = queue.poll();
+            uses.add(name);
+            for (final Map.Entry<String, Entity> binding : this.box.getObject(name).entrySet()) {
+                if (binding.getValue() instanceof ObjectWithApplication) {
+                    final String objectName = ((ObjectWithApplication) binding.getValue()).getName();
+                    if (!uses.contains(objectName)) {
+                        queue.add(objectName);
+                    }
+                }
+                if (binding.getValue() instanceof FlatObject) {
+                    final String objectName = ((FlatObject) binding.getValue()).getName();
+                    if (!uses.contains(objectName)) {
+                        queue.add(objectName);
+                    }
+                }
+            }
+        }
+
+        this.box.getBox().entrySet().removeIf(entry -> !uses.contains(entry.getKey()));
     }
 
     /**
