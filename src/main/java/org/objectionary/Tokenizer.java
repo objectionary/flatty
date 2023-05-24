@@ -28,6 +28,8 @@ import org.objectionary.tokens.Token;
 /**
  * This class is representing the tokens stream.
  * @since 0.1.0
+ *
+ * @checkstyle MultilineJavadocTagsCheck (500 lines)
  */
 public final class Tokenizer {
 
