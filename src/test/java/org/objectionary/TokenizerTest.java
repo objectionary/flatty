@@ -23,12 +23,6 @@
  */
 package org.objectionary;
 
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
-
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Disabled;
@@ -36,7 +30,6 @@ import org.junit.jupiter.api.Test;
 import org.objectionary.tokens.ArrowToken;
 import org.objectionary.tokens.BracketToken;
 import org.objectionary.tokens.StringToken;
-import org.objectionary.tokens.Token;
 
 /**
  * Tokenizer test.

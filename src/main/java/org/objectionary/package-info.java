@@ -21,11 +21,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package org.objectionary.tokens;
 
 /**
- * This class represents the arrow token.
+ * All nessessary classes for working with Flatty.
  * @since 0.1.0
  */
-public final class ArrowToken extends Token {
-}
+package org.objectionary;

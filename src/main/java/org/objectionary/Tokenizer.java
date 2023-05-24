@@ -34,41 +34,56 @@ public final class Tokenizer {
     /**
      * The tokens.
      */
+    @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
     private final String[] tokens;
-
-    /**
-     * The current position.
-     */
-    private int position;
 
     /**
      * Constructor.
      *
      * @param input The input string.
+     *
+     * @todo #15:30min This constructor should split the input string into
+     *  tokens. Also position should be set to 0. Implement it.
      */
     public Tokenizer(final String input) {
         this.tokens = input.split(" ");
-        // TODO Implement
     }
 
+    /**
+     * Checks if there is a next token.
+     * @return True if there is a next token, false otherwise.
+     *
+     * @todo #15:30min This method should return true if there is a next token,
+     *  false otherwise. Implement it. After finishing this task, remove
+     *  checkstyle annotation.
+     * @checkstyle NonStaticMethodCheck (10 lines)
+     */
     boolean hasNext() {
-        // TODO Implement
         return false;
     }
 
     /**
      * Increments the position.
+     *
+     * @todo #15:30min This method should move the position to the next token.
+     *  This method should not return anything. Implement it. After finishing
+     *  remove checkstyle annotation.
+     * @checkstyle NonStaticMethodCheck (10 lines)
      */
     void next() {
-        // TODO Implement
+        // Empty
     }
 
     /**
      * Returns the current token.
      * @return The current token.
+     *
+     * @todo #15:30min This method should return the current token.
+     *  It should not change state of the tokenizer. Implement it. After
+     *  finishing remove checkstyle annotation.
+     * @checkstyle NonStaticMethodCheck (10 lines)
      */
     Token getToken() {
-        // TODO Implement
         return null;
     }
 
