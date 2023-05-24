@@ -30,6 +30,7 @@ import org.junit.jupiter.api.Test;
 import org.objectionary.tokens.ArrowToken;
 import org.objectionary.tokens.BracketToken;
 import org.objectionary.tokens.StringToken;
+import org.objectionary.tokens.Token;
 
 /**
  * Tokenizer test.
@@ -43,38 +44,34 @@ final class TokenizerTest {
     void tokenizerTest() {
         final String input = "ν1(𝜋) ↦ ⟦ 𝜑 ↦ ν2( a ↦ ξ.x ) ⟧";
         final Tokenizer tokenizer = new Tokenizer(input);
-        MatcherAssert.assertThat(tokenizer.hasNext(), Matchers.equalTo(true));
-        MatcherAssert.assertThat(tokenizer.getToken(), Matchers.instanceOf(StringToken.class));
-        tokenizer.next();
-        MatcherAssert.assertThat(tokenizer.getToken(), Matchers.instanceOf(ArrowToken.class));
-        tokenizer.next();
-        MatcherAssert.assertThat(tokenizer.getToken(), Matchers.instanceOf(BracketToken.class));
-        MatcherAssert.assertThat(
-            (BracketToken) tokenizer.getToken(), Matchers.equalTo(BracketToken.BracketType.OPEN)
-        );
-        tokenizer.next();
-        MatcherAssert.assertThat(tokenizer.getToken(), Matchers.instanceOf(StringToken.class));
-        tokenizer.next();
-        MatcherAssert.assertThat(tokenizer.getToken(), Matchers.instanceOf(ArrowToken.class));
-        tokenizer.next();
-        MatcherAssert.assertThat(tokenizer.getToken(), Matchers.instanceOf(StringToken.class));
-        tokenizer.next();
-        MatcherAssert.assertThat(tokenizer.getToken(), Matchers.instanceOf(StringToken.class));
-        tokenizer.next();
-        MatcherAssert.assertThat(tokenizer.getToken(), Matchers.instanceOf(ArrowToken.class));
-        tokenizer.next();
-        MatcherAssert.assertThat(tokenizer.getToken(), Matchers.instanceOf(StringToken.class));
-        tokenizer.next();
-        MatcherAssert.assertThat(tokenizer.getToken(), Matchers.instanceOf(BracketToken.class));
-        MatcherAssert.assertThat(
-            (BracketToken) tokenizer.getToken(), Matchers.equalTo(BracketToken.BracketType.CLOSE)
-        );
-        tokenizer.next();
-        MatcherAssert.assertThat(tokenizer.getToken(), Matchers.instanceOf(BracketToken.class));
-        MatcherAssert.assertThat(
-            (BracketToken) tokenizer.getToken(), Matchers.equalTo(BracketToken.BracketType.CLOSE)
-        );
-        tokenizer.next();
+        int index = 0;
+        final Token[] expectations = {
+            new StringToken(""),
+            new ArrowToken(),
+            new BracketToken(BracketToken.BracketType.OPEN),
+            new StringToken(""),
+            new ArrowToken(),
+            new StringToken(""),
+            new StringToken(""),
+            new ArrowToken(),
+            new StringToken(""),
+            new BracketToken(BracketToken.BracketType.CLOSE),
+            new BracketToken(BracketToken.BracketType.CLOSE),
+        };
+        while (tokenizer.hasNext()) {
+            final Token expected = expectations[index];
+            index += 1;
+            MatcherAssert.assertThat(
+                tokenizer.getToken(), Matchers.instanceOf(expected.getClass())
+            );
+            if (expected instanceof BracketToken) {
+                MatcherAssert.assertThat(
+                    (BracketToken) expected,
+                    Matchers.equalTo((BracketToken) tokenizer.getToken())
+                );
+            }
+            tokenizer.next();
+        }
         MatcherAssert.assertThat(tokenizer.hasNext(), Matchers.equalTo(false));
     }
 }
