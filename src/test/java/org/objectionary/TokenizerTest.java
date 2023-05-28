@@ -25,7 +25,6 @@ package org.objectionary;
 
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.objectionary.tokens.ArrowToken;
 import org.objectionary.tokens.BracketToken;
@@ -39,7 +38,6 @@ import org.objectionary.tokens.Token;
  */
 final class TokenizerTest {
 
-    @Disabled
     @Test
     void tokenizerTest() {
         final String input = "ν1(𝜋) ↦ ⟦ 𝜑 ↦ ν2( a ↦ ξ.x ) ⟧";
@@ -66,8 +64,8 @@ final class TokenizerTest {
             );
             if (expected instanceof BracketToken) {
                 MatcherAssert.assertThat(
-                    (BracketToken) expected,
-                    Matchers.equalTo((BracketToken) tokenizer.getToken())
+                    ((BracketToken) expected).getState(),
+                    Matchers.equalTo(((BracketToken) tokenizer.getToken()).getState())
                 );
             }
             tokenizer.next();

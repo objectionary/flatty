@@ -23,70 +23,76 @@
  */
 package org.objectionary;
 
+import org.objectionary.tokens.ArrowToken;
+import org.objectionary.tokens.BracketToken;
+import org.objectionary.tokens.StringToken;
 import org.objectionary.tokens.Token;
 
 /**
  * This class is representing the tokens stream.
  * @since 0.1.0
- *
- * @checkstyle MultilineJavadocTagsCheck (500 lines)
  */
 public final class Tokenizer {
 
     /**
      * The tokens.
      */
-    @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
     private final String[] tokens;
+
+    /**
+     * The current position.
+     */
+    private int position;
 
     /**
      * Constructor.
      *
      * @param input The input string.
-     *
-     * @todo #15:30min This constructor should split the input string into
-     *  tokens. Also position should be set to 0. Implement it.
      */
     public Tokenizer(final String input) {
         this.tokens = input.split(" ");
+        this.position = 0;
     }
 
     /**
-     * Checks if there is a next token.
-     * @return True if there is a next token, false otherwise.
-     *
-     * @todo #15:30min This method should return true if there is a next token,
-     *  false otherwise. Implement it. After finishing this task, remove
-     *  checkstyle annotation.
-     * @checkstyle NonStaticMethodCheck (10 lines)
+     * Checks if there are more tokens.
+     * @return True if there are more tokens.
      */
     boolean hasNext() {
-        return false;
+        return this.position < this.tokens.length;
     }
 
     /**
      * Increments the position.
-     *
-     * @todo #15:30min This method should move the position to the next token.
-     *  This method should not return anything. Implement it. After finishing
-     *  remove checkstyle annotation.
-     * @checkstyle NonStaticMethodCheck (10 lines)
      */
     void next() {
-        // Empty
+        this.position += 1;
     }
 
     /**
      * Returns the current token.
      * @return The current token.
-     *
-     * @todo #15:30min This method should return the current token.
-     *  It should not change state of the tokenizer. Implement it. After
-     *  finishing remove checkstyle annotation.
-     * @checkstyle NonStaticMethodCheck (10 lines)
      */
     Token getToken() {
-        return null;
+        final String token = this.tokens[this.position];
+        final Token result;
+        switch (token) {
+            case "↦":
+                result = new ArrowToken();
+                break;
+            case "(":
+            case "⟦":
+                result = new BracketToken(BracketToken.BracketType.OPEN);
+                break;
+            case ")":
+            case "⟧":
+                result = new BracketToken(BracketToken.BracketType.CLOSE);
+                break;
+            default:
+                result = new StringToken(token);
+                break;
+        }
+        return result;
     }
 
 }
