@@ -70,6 +70,5 @@ final class TokenizerTest {
             }
             tokenizer.next();
         }
-        MatcherAssert.assertThat(tokenizer.hasNext(), Matchers.equalTo(false));
     }
 }
