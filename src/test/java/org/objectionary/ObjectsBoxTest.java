@@ -32,10 +32,6 @@ import org.junit.jupiter.api.Test;
 import org.objectionary.entities.Data;
 import org.objectionary.entities.Empty;
 import org.objectionary.entities.Entity;
-import org.objectionary.entities.FlatObject;
-import org.objectionary.entities.Lambda;
-import org.objectionary.entities.Locator;
-import org.objectionary.entities.ObjectWithApplication;
 
 /**
  * ObjectsBox test.
@@ -61,32 +57,6 @@ final class ObjectsBoxTest {
 
     @Disabled
     @Test
-    void boxWithLocatorToStringTest() {
-        final ObjectsBox box = new ObjectsBox();
-        final Map<String, Entity> bindings = new HashMap<>();
-        bindings.put("x", new Locator("𝜋.𝜋.y"));
-        box.putObject("bar", bindings);
-        MatcherAssert.assertThat(
-            box.toString(),
-            Matchers.equalTo("bar(𝜋) ↦ ⟦ x ↦ 𝜋.𝜋.y ⟧")
-        );
-    }
-
-    @Disabled
-    @Test
-    void boxWithFlatObjectToStringTest() {
-        final ObjectsBox box = new ObjectsBox();
-        final Map<String, Entity> bindings = new HashMap<>();
-        bindings.put("y", new FlatObject("bar", "𝜋.𝜋"));
-        box.putObject("foo", bindings);
-        MatcherAssert.assertThat(
-            box.toString(),
-            Matchers.equalTo("foo(𝜋) ↦ ⟦ y ↦ bar(𝜋.𝜋) ⟧")
-        );
-    }
-
-    @Disabled
-    @Test
     void boxWithDataToStringTest() {
         final ObjectsBox box = new ObjectsBox();
         final Map<String, Entity> bindings = new HashMap<>();
@@ -95,34 +65,6 @@ final class ObjectsBoxTest {
         MatcherAssert.assertThat(
             box.toString(),
             Matchers.equalTo("foo(𝜋) ↦ ⟦ Δ ↦ 0x000A ⟧")
-        );
-    }
-
-    @Disabled
-    @Test
-    void boxWithLambdaToStringTest() {
-        final ObjectsBox box = new ObjectsBox();
-        final Map<String, Entity> bindings = new HashMap<>();
-        bindings.put("λ", new Lambda("Plus"));
-        box.putObject("v", bindings);
-        MatcherAssert.assertThat(
-            box.toString(),
-            Matchers.equalTo("v(𝜋) ↦ ⟦ λ ↦ Plus ⟧")
-        );
-    }
-
-    @Disabled
-    @Test
-    void boxWithObjectWithApplicationToStringTest() {
-        final ObjectsBox box = new ObjectsBox();
-        final Map<String, Entity> application = new HashMap<>();
-        application.put("x", new Locator("𝜋.𝜋.z"));
-        final Map<String, Entity> bindings = new HashMap<>();
-        bindings.put("y", new ObjectWithApplication("v", application));
-        box.putObject("foo", bindings);
-        MatcherAssert.assertThat(
-            box.toString(),
-            Matchers.equalTo("foo(𝜋) ↦ ⟦ y ↦ v( x ↦ 𝜋.𝜋.z ) ⟧")
         );
     }
 }
