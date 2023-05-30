@@ -55,7 +55,7 @@ public final class ObjectsBox {
     }
 
     /**
-     * Gets an object.
+     * Gets an object by name.
      * @param name The name of the object.
      * @return The object.
      */
@@ -64,10 +64,10 @@ public final class ObjectsBox {
     }
 
     /**
-     * Gets objects.
+     * Gets the box of objects.
      * @return The box of objects.
      */
-    public Map<String, Map<String, Entity>> getBox() {
+    public Map<String, Map<String, Entity>> box() {
         return this.box;
     }
 
