@@ -71,8 +71,12 @@ public final class ObjectsBox {
         return this.box;
     }
 
+    /**
+     * @todo #25:30min We have to implement the toString() method.
+     *  It should return a string representation of the objects box,
+     *  which will be used in phi emulator.
+     */
     @Override
-    // TODO: Implement toString()
     public String toString() {
         return null;
     }

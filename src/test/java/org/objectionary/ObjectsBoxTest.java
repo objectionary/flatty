@@ -36,6 +36,9 @@ import java.util.Map;
  * ObjectsBox test.
  *
  * @since 0.1.0
+ *
+ * @todo #25:30min In future we have to add more complex tests for ObjectsBox.
+ *  At least we have to add tests to check v0 order and Δ, λ, 𝜑 orders.
  */
 final class ObjectsBoxTest {
 
@@ -83,7 +86,7 @@ final class ObjectsBoxTest {
     void boxWithDataToStringTest() {
         final ObjectsBox box = new ObjectsBox();
         final Map<String, Entity> bindings = new HashMap<>();
-        bindings.put("Δ", new Data(10));
+        bindings.put("Δ", new Data(Integer.parseInt("000A", 16)));
         box.putObject("foo", bindings);
         MatcherAssert.assertThat(
             box.toString(),
