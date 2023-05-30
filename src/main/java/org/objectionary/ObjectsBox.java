@@ -67,11 +67,13 @@ public final class ObjectsBox {
      * Gets the box of objects.
      * @return The box of objects.
      */
-    public Map<String, Map<String, Entity>> box() {
+    public Map<String, Map<String, Entity>> content() {
         return this.box;
     }
 
     /**
+     * Converts the box of objects to a string.
+     * @checkstyle NoJavadocForOverriddenMethodsCheck (10 lines)
      * @todo #25:30min We have to implement the toString() method.
      *  It should return a string representation of the objects box,
      *  which will be used in phi emulator.

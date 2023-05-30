@@ -28,11 +28,4 @@ package org.objectionary.entities;
  * @since 0.1.0
  */
 public final class Empty extends Entity {
-
-        /**
-        * Constructor.
-        */
-        public Empty() {
-            // Empty
-        }
 }

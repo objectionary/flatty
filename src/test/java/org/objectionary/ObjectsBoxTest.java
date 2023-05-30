@@ -23,20 +23,24 @@
  */
 package org.objectionary;
 
+import java.util.HashMap;
+import java.util.Map;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import org.objectionary.entities.*;
-
-import java.util.HashMap;
-import java.util.Map;
+import org.objectionary.entities.Data;
+import org.objectionary.entities.Empty;
+import org.objectionary.entities.Entity;
+import org.objectionary.entities.FlatObject;
+import org.objectionary.entities.Lambda;
+import org.objectionary.entities.Locator;
+import org.objectionary.entities.ObjectWithApplication;
 
 /**
  * ObjectsBox test.
  *
  * @since 0.1.0
- *
  * @todo #25:30min In future we have to add more complex tests for ObjectsBox.
  *  At least we have to add tests to check v0 order and Δ, λ, 𝜑 orders.
  */

@@ -32,6 +32,7 @@ public final class Data extends Entity {
     /**
      * The data value.
      */
+    @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
     private final int value;
 
     /**

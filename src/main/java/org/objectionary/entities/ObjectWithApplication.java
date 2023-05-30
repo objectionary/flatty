@@ -34,11 +34,13 @@ public final class ObjectWithApplication extends Entity {
     /**
      * The name of the object with application.
      */
+    @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
     private final String name;
 
     /**
      * The application of the object with application.
      */
+    @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
     private final Map<String, Entity> application;
 
     /**

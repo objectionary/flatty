@@ -27,6 +27,7 @@ package org.objectionary.entities;
  * This class represents the entity.
  * @since 0.1.0
  */
+@SuppressWarnings("PMD.AbstractClassWithoutAbstractMethod")
 public abstract class Entity {
 
     /**

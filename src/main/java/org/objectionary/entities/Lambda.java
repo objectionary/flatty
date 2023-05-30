@@ -32,6 +32,7 @@ public final class Lambda extends Entity {
     /**
      * The function of the lambda.
      */
+    @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
     private final String function;
 
     /**

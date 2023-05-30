@@ -21,34 +21,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package org.objectionary.entities;
 
 /**
- * This class represents the flat object entity.
- * @since 0.1.0
+ * All necessary entities for working with Flatty.
  */
-public final class FlatObject extends Entity {
-
-    /**
-     * The name of the object.
-     */
-    @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-    private final String name;
-
-    /**
-     * The locator of the object.
-     */
-    @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-    private final String locator;
-
-    /**
-     * Constructor.
-     * @param name The name of the object.
-     * @param locator The locator of the object.
-     */
-    public FlatObject(final String name, final String locator) {
-        this.name = name;
-        this.locator = locator;
-    }
-
-}
+package org.objectionary.entities;

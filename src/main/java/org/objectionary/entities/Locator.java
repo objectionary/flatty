@@ -32,6 +32,7 @@ public final class Locator extends Entity {
     /**
      * The path of the locator.
      */
+    @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
     private final String path;
 
     /**
