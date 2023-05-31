@@ -67,4 +67,5 @@ final class ObjectsBoxTest {
             Matchers.equalTo("foo(𝜋) ↦ ⟦ Δ ↦ 0x000A ⟧")
         );
     }
+
 }
