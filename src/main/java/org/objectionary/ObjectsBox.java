@@ -50,7 +50,7 @@ public final class ObjectsBox {
      * @param name The name of the object.
      * @param bindings The bindings of the object.
      */
-    public void putObject(final String name, final Map<String, Entity> bindings) {
+    public void put(final String name, final Map<String, Entity> bindings) {
         this.box.put(name, bindings);
     }
 
@@ -59,7 +59,7 @@ public final class ObjectsBox {
      * @param name The name of the object.
      * @return The object.
      */
-    public Map<String, Entity> getObject(final String name) {
+    public Map<String, Entity> get(final String name) {
         return this.box.get(name);
     }
 

@@ -48,7 +48,7 @@ final class ObjectsBoxTest {
         final ObjectsBox box = new ObjectsBox();
         final Map<String, Entity> bindings = new HashMap<>();
         bindings.put("x", new Empty());
-        box.putObject("foo", bindings);
+        box.put("foo", bindings);
         MatcherAssert.assertThat(
             box.toString(),
             Matchers.equalTo("foo(𝜋) ↦ ⟦ x ↦ ø ⟧")
@@ -61,7 +61,7 @@ final class ObjectsBoxTest {
         final ObjectsBox box = new ObjectsBox();
         final Map<String, Entity> bindings = new HashMap<>();
         bindings.put("Δ", new Data(Integer.parseInt("000A", 16)));
-        box.putObject("foo", bindings);
+        box.put("foo", bindings);
         MatcherAssert.assertThat(
             box.toString(),
             Matchers.equalTo("foo(𝜋) ↦ ⟦ Δ ↦ 0x000A ⟧")
