@@ -33,7 +33,9 @@ import org.objectionary.entities.Data;
 import org.objectionary.entities.Empty;
 import org.objectionary.entities.Entity;
 import org.objectionary.entities.FlatObject;
+import org.objectionary.entities.Lambda;
 import org.objectionary.entities.Locator;
+import org.objectionary.entities.ObjectWithApplication;
 
 /**
  * ObjectsBox test.
