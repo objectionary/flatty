@@ -95,4 +95,32 @@ final class ObjectsBoxTest {
             Matchers.equalTo("foo(𝜋) ↦ ⟦ y ↦ bar(𝜋.𝜋) ⟧")
         );
     }
+
+    @Disabled
+    @Test
+    void boxWithLambdaToStringTest() {
+        final ObjectsBox box = new ObjectsBox();
+        final Map<String, Entity> bindings = new HashMap<>();
+        bindings.put("λ", new Lambda("Plus"));
+        box.put("v", bindings);
+        MatcherAssert.assertThat(
+                box.toString(),
+                Matchers.equalTo("v(𝜋) ↦ ⟦ λ ↦ Plus ⟧")
+        );
+    }
+
+    @Disabled
+    @Test
+    void boxWithObjectWithApplicationToStringTest() {
+        final ObjectsBox box = new ObjectsBox();
+        final Map<String, Entity> application = new HashMap<>();
+        application.put("x", new Locator("𝜋.𝜋.z"));
+        final Map<String, Entity> bindings = new HashMap<>();
+        bindings.put("y", new ObjectWithApplication("v", application));
+        box.put("foo", bindings);
+        MatcherAssert.assertThat(
+                box.toString(),
+                Matchers.equalTo("foo(𝜋) ↦ ⟦ y ↦ v( x ↦ 𝜋.𝜋.z ) ⟧")
+        );
+    }
 }
