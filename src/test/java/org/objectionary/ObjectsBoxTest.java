@@ -106,8 +106,8 @@ final class ObjectsBoxTest {
         bindings.put("λ", new Lambda("Plus"));
         box.put("v", bindings);
         MatcherAssert.assertThat(
-                box.toString(),
-                Matchers.equalTo("v(𝜋) ↦ ⟦ λ ↦ Plus ⟧")
+            box.toString(),
+            Matchers.equalTo("v(𝜋) ↦ ⟦ λ ↦ Plus ⟧")
         );
     }
 
@@ -121,8 +121,8 @@ final class ObjectsBoxTest {
         bindings.put("y", new ObjectWithApplication("v", application));
         box.put("foo", bindings);
         MatcherAssert.assertThat(
-                box.toString(),
-                Matchers.equalTo("foo(𝜋) ↦ ⟦ y ↦ v( x ↦ 𝜋.𝜋.z ) ⟧")
+            box.toString(),
+            Matchers.equalTo("foo(𝜋) ↦ ⟦ y ↦ v( x ↦ 𝜋.𝜋.z ) ⟧")
         );
     }
 }
