@@ -90,11 +90,11 @@ final class ObjectsBoxTest {
     void boxWithFlatObjectToStringTest() {
         final ObjectsBox box = new ObjectsBox();
         final Map<String, Entity> bindings = new HashMap<>();
-        bindings.put("y", new FlatObject("bar", "𝜋.𝜋"));
+        bindings.put("y", new FlatObject("bar", "ξ"));
         box.put("foo", bindings);
         MatcherAssert.assertThat(
             box.toString(),
-            Matchers.equalTo("foo(𝜋) ↦ ⟦ y ↦ bar(𝜋.𝜋) ⟧")
+            Matchers.equalTo("foo(𝜋) ↦ ⟦ y ↦ bar(ξ) ⟧")
         );
     }
 
@@ -123,6 +123,87 @@ final class ObjectsBoxTest {
         MatcherAssert.assertThat(
             box.toString(),
             Matchers.equalTo("foo(𝜋) ↦ ⟦ y ↦ v( x ↦ 𝜋.𝜋.z ) ⟧")
+        );
+    }
+
+    @Disabled
+    @Test
+    void zeroObjectOrderTest() {
+        final ObjectsBox box = new ObjectsBox();
+        {
+            final Map<String, Entity> bindings = new HashMap<>();
+            bindings.put("x", new Empty());
+            box.put("a", bindings);
+        }
+        {
+            final Map<String, Entity> bindings = new HashMap<>();
+            bindings.put("y", new Empty());
+            box.put("b", bindings);
+        }
+        {
+            final Map<String, Entity> bindings = new HashMap<>();
+            bindings.put("z", new Empty());
+            box.put("ν0", bindings);
+        }
+        final String result = box.toString();
+        assert result != null;
+        MatcherAssert.assertThat(
+            result.split("\n")[0],
+            Matchers.equalTo("ν0(𝜋) ↦ ⟦ z ↦ ø ⟧")
+        );
+    }
+
+    @Disabled
+    @Test
+    void deltaOrderTest() {
+        final ObjectsBox box = new ObjectsBox();
+        final Map<String, Entity> bindings = new HashMap<>();
+        bindings.put("Δ", new Data(Integer.parseInt("000A", 16)));
+        bindings.put("x", new Empty());
+        bindings.put("y", new FlatObject("bar", "𝜋"));
+        bindings.put("a", new Lambda("Atom"));
+        box.put("foo", bindings);
+        final String result = box.toString();
+        assert result != null;
+        MatcherAssert.assertThat(
+            result.split(" ")[3],
+            Matchers.equalTo("Δ")
+        );
+    }
+
+    @Disabled
+    @Test
+    void lambdaOrderTest() {
+        final ObjectsBox box = new ObjectsBox();
+        final Map<String, Entity> bindings = new HashMap<>();
+        bindings.put("λ", new Data(Integer.parseInt("000A", 16)));
+        bindings.put("a1", new Empty());
+        bindings.put("a2", new FlatObject("bar", "𝜋"));
+        bindings.put("a3", new Lambda("Atom"));
+        box.put("foo", bindings);
+        final String result = box.toString();
+        assert result != null;
+        MatcherAssert.assertThat(
+                result.split(" ")[3],
+                Matchers.equalTo("λ")
+        );
+    }
+
+    @Disabled
+    @Test
+    void phiOrderTest() {
+        final ObjectsBox box = new ObjectsBox();
+        final Map<String, Entity> bindings = new HashMap<>();
+        bindings.put("𝜑", new Data(Integer.parseInt("000A", 16)));
+        bindings.put("a", new Empty());
+        bindings.put("b", new FlatObject("bar", "𝜋"));
+        bindings.put("c", new Lambda("Atom"));
+        box.put("foo", bindings);
+        final String result = box.toString();
+        assert result != null;
+        MatcherAssert.assertThat(
+                result.split(" ")[3],
+                Matchers.equalTo("𝜑")
         );
     }
 }
