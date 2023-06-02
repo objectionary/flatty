@@ -29,7 +29,7 @@ import java.util.Map;
  * This class represents the object with application entity.
  * @since 0.1.0
  */
-public final class ObjectWithApplication extends Entity {
+public final class NestedObject extends Entity {
 
     /**
      * The name of the object with application.
@@ -48,7 +48,7 @@ public final class ObjectWithApplication extends Entity {
      * @param name The name of the object with application.
      * @param application The application of the object with application.
      */
-    public ObjectWithApplication(final String name, final Map<String, Entity> application) {
+    public NestedObject(final String name, final Map<String, Entity> application) {
         this.name = name;
         this.application = application;
     }

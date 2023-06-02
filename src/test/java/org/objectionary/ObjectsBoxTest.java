@@ -35,7 +35,7 @@ import org.objectionary.entities.Entity;
 import org.objectionary.entities.FlatObject;
 import org.objectionary.entities.Lambda;
 import org.objectionary.entities.Locator;
-import org.objectionary.entities.ObjectWithApplication;
+import org.objectionary.entities.NestedObject;
 
 /**
  * ObjectsBox test.
@@ -113,12 +113,12 @@ final class ObjectsBoxTest {
 
     @Disabled
     @Test
-    void boxWithObjectWithApplicationToStringTest() {
+    void boxWithNestedObjectToStringTest() {
         final ObjectsBox box = new ObjectsBox();
         final Map<String, Entity> application = new HashMap<>();
         application.put("x", new Locator("𝜋.𝜋.z"));
         final Map<String, Entity> bindings = new HashMap<>();
-        bindings.put("y", new ObjectWithApplication("v", application));
+        bindings.put("y", new NestedObject("v", application));
         box.put("foo", bindings);
         MatcherAssert.assertThat(
             box.toString(),
