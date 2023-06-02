@@ -41,8 +41,6 @@ import org.objectionary.entities.NestedObject;
  * ObjectsBox test.
  *
  * @since 0.1.0
- * @todo #25:30min In future we have to add more complex tests for ObjectsBox.
- *  At least we have to add tests to check v0 order and Δ, λ, 𝜑 orders.
  */
 final class ObjectsBoxTest {
 
