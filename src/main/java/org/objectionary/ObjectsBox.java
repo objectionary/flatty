@@ -77,9 +77,6 @@ public final class ObjectsBox {
     /**
      * Converts the box of objects to a string.
      * @checkstyle NoJavadocForOverriddenMethodsCheck (10 lines)
-     * @todo #25:30min We have to implement the toString() method.
-     *  It should return a string representation of the objects box,
-     *  which will be used in phi emulator.
      */
     @Override
     public String toString() {
