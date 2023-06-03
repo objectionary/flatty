@@ -156,7 +156,6 @@ final class ObjectsBoxTest {
         bindings.put("a", new Lambda("Atom"));
         box.put("func", bindings);
         final String result = box.toString();
-        assert result != null;
         MatcherAssert.assertThat(
             result.split(" ")[3],
             Matchers.equalTo("Δ")
@@ -174,7 +173,6 @@ final class ObjectsBoxTest {
         bindings.put("a3", new Lambda("Atom"));
         box.put("func", bindings);
         final String result = box.toString();
-        assert result != null;
         MatcherAssert.assertThat(
             result.split(" ")[3],
             Matchers.equalTo("λ")
@@ -192,7 +190,6 @@ final class ObjectsBoxTest {
         bindings.put("c", new Lambda("Atom"));
         box.put("f", bindings);
         final String result = box.toString();
-        assert result != null;
         MatcherAssert.assertThat(
             result.split(" ")[3],
             Matchers.equalTo("𝜑")
