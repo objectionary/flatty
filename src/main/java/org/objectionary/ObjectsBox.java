@@ -23,8 +23,8 @@
  */
 package org.objectionary;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+
 import org.objectionary.entities.Entity;
 
 /**
@@ -78,9 +78,56 @@ public final class ObjectsBox {
      *  It should return a string representation of the objects box,
      *  which will be used in phi emulator.
      */
+
     @Override
     public String toString() {
-        return null;
+        if (!this.box.containsKey("ν0")) {
+            throw new IllegalArgumentException("The box does not contain the object ν0.");
+        }
+        final List<String> results = new ArrayList<>(this.box.size());
+        results.add(ObjectsBox.objectToString("ν0", this.box.get("ν0")));
+        for (final Map.Entry<String, Map<String, Entity>> entry : this.box.entrySet()) {
+            if (entry.getKey().equals("ν0")) {
+                continue;
+            }
+            results.add(
+                    ObjectsBox.objectToString(entry.getKey(), entry.getValue())
+            );
+        }
+        return String.join("\n", results);
+    }
+
+    /**
+     * Converts an object to a string.
+     * @param name The name of the object.
+     * @param bindings The bindings of the object.
+     * @return The string representation of the object.
+     */
+    private static String objectToString(
+        final String name, final Map<String, Entity> bindings
+    ) {
+        final List<String> dataizations = Arrays.asList("Δ", "𝜋", "λ");
+        final List<String> result = new ArrayList<>(bindings.size());
+        for (final String binding : dataizations) {
+            if (bindings.containsKey(binding)) {
+                result.add(
+                    String.format("%s ↦ %s", binding, bindings.get(binding))
+                );
+            }
+        }
+        for (final Map.Entry<String, Entity> binding : bindings.entrySet()) {
+            if (dataizations.contains(binding.getKey())) {
+                continue;
+            }
+            result.add(
+                String.format("%s ↦ %s", binding.getKey(), binding.getValue())
+            );
+        }
+        return String.format(
+            "%s(𝜋) ↦ ⟦ %s ⟧",
+            name,
+            String.join(", ", result)
+        );
     }
 
 }
