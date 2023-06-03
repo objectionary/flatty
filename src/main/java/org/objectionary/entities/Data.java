@@ -32,7 +32,6 @@ public final class Data extends Entity {
     /**
      * The data value.
      */
-    @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
     private final int value;
 
     /**
@@ -41,5 +40,10 @@ public final class Data extends Entity {
      */
     public Data(final int value) {
         this.value = value;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("0x%04X", this.value);
     }
 }

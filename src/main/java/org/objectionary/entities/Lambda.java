@@ -42,4 +42,9 @@ public final class Lambda extends Entity {
     public Lambda(final String function) {
         this.function = function;
     }
+
+    @Override
+    public String toString() {
+        return this.function;
+    }
 }

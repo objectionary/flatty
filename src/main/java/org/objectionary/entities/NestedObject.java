@@ -52,4 +52,19 @@ public final class NestedObject extends Entity {
         this.name = name;
         this.application = application;
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder buffer = new StringBuilder();
+        final int size = this.application.size();
+        int count = 0;
+        for (final Map.Entry<String, Entity> entry : this.application.entrySet()) {
+            buffer.append(entry.getKey()).append(" ↦ ").append(entry.getValue());
+            count += 1;
+            if (count < size) {
+                buffer.append(", ");
+            }
+        }
+        return String.format("%s(%s)", this.name, buffer);
+    }
 }

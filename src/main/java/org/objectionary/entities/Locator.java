@@ -42,4 +42,9 @@ public final class Locator extends Entity {
     public Locator(final String path) {
         this.path = path;
     }
+
+    @Override
+    public String toString() {
+        return this.path;
+    }
 }
