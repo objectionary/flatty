@@ -32,13 +32,11 @@ public final class FlatObject extends Entity {
     /**
      * The name of the object.
      */
-    @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
     private final String name;
 
     /**
      * The locator of the object.
      */
-    @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
     private final String locator;
 
     /**
