@@ -105,7 +105,7 @@ public final class ObjectsBox {
     private static String objectToString(
         final String name, final Map<String, Entity> bindings
     ) {
-        final List<String> dataizations = Arrays.asList("Δ", "𝜋", "λ");
+        final List<String> dataizations = Arrays.asList("Δ", "𝜑", "λ");
         final List<String> result = new ArrayList<>(bindings.size());
         for (final String binding : dataizations) {
             if (bindings.containsKey(binding)) {
