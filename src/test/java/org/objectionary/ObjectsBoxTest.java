@@ -27,7 +27,6 @@ import java.util.HashMap;
 import java.util.Map;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.objectionary.entities.Data;
 import org.objectionary.entities.Empty;
@@ -44,72 +43,66 @@ import org.objectionary.entities.NestedObject;
  */
 final class ObjectsBoxTest {
 
-    @Disabled
     @Test
     void boxWithEmptyToStringTest() {
         final ObjectsBox box = new ObjectsBox();
         final Map<String, Entity> bindings = new HashMap<>();
         bindings.put("x", new Empty());
-        box.put("foo", bindings);
+        box.put("ν0", bindings);
         MatcherAssert.assertThat(
             box.toString(),
-            Matchers.equalTo("foo(𝜋) ↦ ⟦ x ↦ ø ⟧")
+            Matchers.equalTo("ν0(𝜋) ↦ ⟦ x ↦ ø ⟧")
         );
     }
 
-    @Disabled
     @Test
     void boxWithDataToStringTest() {
         final ObjectsBox box = new ObjectsBox();
         final Map<String, Entity> bindings = new HashMap<>();
         bindings.put("Δ", new Data(Integer.parseInt("000A", 16)));
-        box.put("foo", bindings);
+        box.put("ν0", bindings);
         MatcherAssert.assertThat(
             box.toString(),
-            Matchers.equalTo("foo(𝜋) ↦ ⟦ Δ ↦ 0x000A ⟧")
+            Matchers.equalTo("ν0(𝜋) ↦ ⟦ Δ ↦ 0x000A ⟧")
         );
     }
 
-    @Disabled
     @Test
     void boxWithLocatorToStringTest() {
         final ObjectsBox box = new ObjectsBox();
         final Map<String, Entity> bindings = new HashMap<>();
         bindings.put("x", new Locator("𝜋.𝜋.y"));
-        box.put("bar", bindings);
+        box.put("ν0", bindings);
         MatcherAssert.assertThat(
             box.toString(),
-            Matchers.equalTo("bar(𝜋) ↦ ⟦ x ↦ 𝜋.𝜋.y ⟧")
+            Matchers.equalTo("ν0(𝜋) ↦ ⟦ x ↦ 𝜋.𝜋.y ⟧")
         );
     }
 
-    @Disabled
     @Test
     void boxWithFlatObjectToStringTest() {
         final ObjectsBox box = new ObjectsBox();
         final Map<String, Entity> bindings = new HashMap<>();
         bindings.put("y", new FlatObject("bar", "ξ"));
-        box.put("foo", bindings);
+        box.put("ν0", bindings);
         MatcherAssert.assertThat(
             box.toString(),
-            Matchers.equalTo("foo(𝜋) ↦ ⟦ y ↦ bar(ξ) ⟧")
+            Matchers.equalTo("ν0(𝜋) ↦ ⟦ y ↦ bar(ξ) ⟧")
         );
     }
 
-    @Disabled
     @Test
     void boxWithLambdaToStringTest() {
         final ObjectsBox box = new ObjectsBox();
         final Map<String, Entity> bindings = new HashMap<>();
         bindings.put("λ", new Lambda("Plus"));
-        box.put("v", bindings);
+        box.put("ν0", bindings);
         MatcherAssert.assertThat(
             box.toString(),
-            Matchers.equalTo("v(𝜋) ↦ ⟦ λ ↦ Plus ⟧")
+            Matchers.equalTo("ν0(𝜋) ↦ ⟦ λ ↦ Plus ⟧")
         );
     }
 
-    @Disabled
     @Test
     void boxWithNestedObjectToStringTest() {
         final ObjectsBox box = new ObjectsBox();
@@ -117,14 +110,13 @@ final class ObjectsBoxTest {
         application.put("x", new Locator("𝜋.𝜋.z"));
         final Map<String, Entity> bindings = new HashMap<>();
         bindings.put("y", new NestedObject("v", application));
-        box.put("foo", bindings);
+        box.put("ν0", bindings);
         MatcherAssert.assertThat(
             box.toString(),
-            Matchers.equalTo("foo(𝜋) ↦ ⟦ y ↦ v( x ↦ 𝜋.𝜋.z ) ⟧")
+            Matchers.equalTo("ν0(𝜋) ↦ ⟦ y ↦ v( x ↦ 𝜋.𝜋.z ) ⟧")
         );
     }
 
-    @Disabled
     @Test
     void zeroObjectOrderTest() {
         final ObjectsBox box = new ObjectsBox();
@@ -138,14 +130,12 @@ final class ObjectsBoxTest {
         bindings.put("z", new Empty());
         box.put("ν0", bindings);
         final String result = box.toString();
-        assert result != null;
         MatcherAssert.assertThat(
             result.split("\n")[0],
             Matchers.equalTo("ν0(𝜋) ↦ ⟦ z ↦ ø ⟧")
         );
     }
 
-    @Disabled
     @Test
     void deltaOrderTest() {
         final ObjectsBox box = new ObjectsBox();
@@ -154,7 +144,7 @@ final class ObjectsBoxTest {
         bindings.put("x", new Empty());
         bindings.put("y", new FlatObject("bar", "𝜋"));
         bindings.put("a", new Lambda("Atom"));
-        box.put("func", bindings);
+        box.put("ν0", bindings);
         final String result = box.toString();
         MatcherAssert.assertThat(
             result.split(" ")[3],
@@ -162,7 +152,6 @@ final class ObjectsBoxTest {
         );
     }
 
-    @Disabled
     @Test
     void lambdaOrderTest() {
         final ObjectsBox box = new ObjectsBox();
@@ -171,7 +160,7 @@ final class ObjectsBoxTest {
         bindings.put("a1", new Empty());
         bindings.put("a2", new FlatObject("bar", "𝜋"));
         bindings.put("a3", new Lambda("Atom"));
-        box.put("func", bindings);
+        box.put("ν0", bindings);
         final String result = box.toString();
         MatcherAssert.assertThat(
             result.split(" ")[3],
@@ -179,7 +168,6 @@ final class ObjectsBoxTest {
         );
     }
 
-    @Disabled
     @Test
     void phiOrderTest() {
         final ObjectsBox box = new ObjectsBox();
@@ -188,7 +176,7 @@ final class ObjectsBoxTest {
         bindings.put("a", new Empty());
         bindings.put("b", new FlatObject("d", "𝜋"));
         bindings.put("c", new Lambda("Atom"));
-        box.put("f", bindings);
+        box.put("ν0", bindings);
         final String result = box.toString();
         MatcherAssert.assertThat(
             result.split(" ")[3],
