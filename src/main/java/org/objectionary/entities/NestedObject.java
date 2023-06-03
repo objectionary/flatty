@@ -65,6 +65,6 @@ public final class NestedObject extends Entity {
                 buffer.append(", ");
             }
         }
-        return String.format("%s(%s)", this.name, buffer);
+        return String.format("%s( %s )", this.name, buffer);
     }
 }
