@@ -43,12 +43,17 @@ import org.objectionary.entities.NestedObject;
  */
 final class ObjectsBoxTest {
 
+    /**
+     * Literal for v0.
+     */
+    private static final String INIT_OBJECT = "ν0";
+
     @Test
     void boxWithEmptyToStringTest() {
         final ObjectsBox box = new ObjectsBox();
         final Map<String, Entity> bindings = new HashMap<>();
         bindings.put("x", new Empty());
-        box.put("ν0", bindings);
+        box.put(ObjectsBoxTest.INIT_OBJECT, bindings);
         MatcherAssert.assertThat(
             box.toString(),
             Matchers.equalTo("ν0(𝜋) ↦ ⟦ x ↦ ø ⟧")
@@ -60,7 +65,7 @@ final class ObjectsBoxTest {
         final ObjectsBox box = new ObjectsBox();
         final Map<String, Entity> bindings = new HashMap<>();
         bindings.put("Δ", new Data(Integer.parseInt("000A", 16)));
-        box.put("ν0", bindings);
+        box.put(ObjectsBoxTest.INIT_OBJECT, bindings);
         MatcherAssert.assertThat(
             box.toString(),
             Matchers.equalTo("ν0(𝜋) ↦ ⟦ Δ ↦ 0x000A ⟧")
@@ -72,7 +77,7 @@ final class ObjectsBoxTest {
         final ObjectsBox box = new ObjectsBox();
         final Map<String, Entity> bindings = new HashMap<>();
         bindings.put("x", new Locator("𝜋.𝜋.y"));
-        box.put("ν0", bindings);
+        box.put(ObjectsBoxTest.INIT_OBJECT, bindings);
         MatcherAssert.assertThat(
             box.toString(),
             Matchers.equalTo("ν0(𝜋) ↦ ⟦ x ↦ 𝜋.𝜋.y ⟧")
@@ -84,7 +89,7 @@ final class ObjectsBoxTest {
         final ObjectsBox box = new ObjectsBox();
         final Map<String, Entity> bindings = new HashMap<>();
         bindings.put("y", new FlatObject("bar", "ξ"));
-        box.put("ν0", bindings);
+        box.put(ObjectsBoxTest.INIT_OBJECT, bindings);
         MatcherAssert.assertThat(
             box.toString(),
             Matchers.equalTo("ν0(𝜋) ↦ ⟦ y ↦ bar(ξ) ⟧")
@@ -96,7 +101,7 @@ final class ObjectsBoxTest {
         final ObjectsBox box = new ObjectsBox();
         final Map<String, Entity> bindings = new HashMap<>();
         bindings.put("λ", new Lambda("Plus"));
-        box.put("ν0", bindings);
+        box.put(ObjectsBoxTest.INIT_OBJECT, bindings);
         MatcherAssert.assertThat(
             box.toString(),
             Matchers.equalTo("ν0(𝜋) ↦ ⟦ λ ↦ Plus ⟧")
@@ -110,7 +115,7 @@ final class ObjectsBoxTest {
         application.put("x", new Locator("𝜋.𝜋.z"));
         final Map<String, Entity> bindings = new HashMap<>();
         bindings.put("y", new NestedObject("v", application));
-        box.put("ν0", bindings);
+        box.put(ObjectsBoxTest.INIT_OBJECT, bindings);
         MatcherAssert.assertThat(
             box.toString(),
             Matchers.equalTo("ν0(𝜋) ↦ ⟦ y ↦ v( x ↦ 𝜋.𝜋.z ) ⟧")
@@ -128,7 +133,7 @@ final class ObjectsBoxTest {
         box.put("b", bindings);
         bindings = new HashMap<>();
         bindings.put("z", new Empty());
-        box.put("ν0", bindings);
+        box.put(ObjectsBoxTest.INIT_OBJECT, bindings);
         final String result = box.toString();
         MatcherAssert.assertThat(
             result.split("\n")[0],
@@ -144,7 +149,7 @@ final class ObjectsBoxTest {
         bindings.put("x", new Empty());
         bindings.put("y", new FlatObject("bar", "𝜋"));
         bindings.put("a", new Lambda("Atom"));
-        box.put("ν0", bindings);
+        box.put(ObjectsBoxTest.INIT_OBJECT, bindings);
         final String result = box.toString();
         MatcherAssert.assertThat(
             result.split(" ")[3],
@@ -160,7 +165,7 @@ final class ObjectsBoxTest {
         bindings.put("a1", new Empty());
         bindings.put("a2", new FlatObject("bar", "𝜋"));
         bindings.put("a3", new Lambda("Atom"));
-        box.put("ν0", bindings);
+        box.put(ObjectsBoxTest.INIT_OBJECT, bindings);
         final String result = box.toString();
         MatcherAssert.assertThat(
             result.split(" ")[3],
@@ -176,7 +181,7 @@ final class ObjectsBoxTest {
         bindings.put("a", new Empty());
         bindings.put("b", new FlatObject("d", "𝜋"));
         bindings.put("c", new Lambda("Atom"));
-        box.put("ν0", bindings);
+        box.put(ObjectsBoxTest.INIT_OBJECT, bindings);
         final String result = box.toString();
         MatcherAssert.assertThat(
             result.split(" ")[3],
