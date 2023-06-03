@@ -53,7 +53,13 @@ public final class FlatObject extends Entity {
 
     @Override
     public String toString() {
-        return this.locator.isEmpty() ? this.name : String.format("%s(%s)", this.name, this.locator);
+        final String result;
+        if (this.locator.isEmpty()) {
+            result = this.name;
+        } else {
+            result = String.format("%s(%s)", this.name, this.locator);
+        }
+        return result;
     }
 
 }

@@ -23,8 +23,11 @@
  */
 package org.objectionary;
 
-import java.util.*;
-
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import org.objectionary.entities.Entity;
 
 /**
@@ -78,7 +81,6 @@ public final class ObjectsBox {
      *  It should return a string representation of the objects box,
      *  which will be used in phi emulator.
      */
-
     @Override
     public String toString() {
         if (!this.box.containsKey("ν0")) {
@@ -91,7 +93,7 @@ public final class ObjectsBox {
                 continue;
             }
             results.add(
-                    ObjectsBox.objectToString(entry.getKey(), entry.getValue())
+                ObjectsBox.objectToString(entry.getKey(), entry.getValue())
             );
         }
         return String.join("\n", results);
