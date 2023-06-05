@@ -84,13 +84,13 @@ public final class ObjectsBox {
             throw new IllegalArgumentException("The box does not contain the object ν0.");
         }
         final List<String> results = new ArrayList<>(this.box.size());
-        results.add(ObjectsBox.objectToString("ν0", this.box.get("ν0")));
+        results.add(ObjectsBox.serialize("ν0", this.box.get("ν0")));
         for (final Map.Entry<String, Map<String, Entity>> entry : this.box.entrySet()) {
             if (entry.getKey().equals("ν0")) {
                 continue;
             }
             results.add(
-                ObjectsBox.objectToString(entry.getKey(), entry.getValue())
+                ObjectsBox.serialize(entry.getKey(), entry.getValue())
             );
         }
         return String.join("\n", results);
@@ -102,7 +102,7 @@ public final class ObjectsBox {
      * @param bindings The bindings of the object.
      * @return The string representation of the object.
      */
-    private static String objectToString(
+    private static String serialize(
         final String name, final Map<String, Entity> bindings
     ) {
         final List<String> dataizations = Arrays.asList("Δ", "𝜑", "λ");
