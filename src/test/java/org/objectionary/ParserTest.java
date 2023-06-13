@@ -78,10 +78,9 @@ final class ParserTest {
             "ν5(𝜋) ↦ ⟦ 𝜑 ↦ ν3(ξ) ⟧",
         };
         final Parser parser = new Parser(String.join("\n", input));
-        final boolean equals = parser.parse().toString().equals(String.join("\n", correct));
         MatcherAssert.assertThat(
-            equals,
-            Matchers.equalTo(true)
+            parser.parse().toString(),
+            Matchers.equalToCompressingWhiteSpace(String.join("\n", correct))
         );
     }
 
@@ -102,10 +101,9 @@ final class ParserTest {
             "ν2(𝜋) ↦ ⟦ y ↦ ø ⟧",
         };
         final Parser parser = new Parser(String.join("\n", input));
-        final boolean equals = parser.parse().toString().equals(String.join("\n", correct));
         MatcherAssert.assertThat(
-            equals,
-            Matchers.equalTo(true)
+            parser.parse().toString(),
+            Matchers.equalToCompressingWhiteSpace(String.join("\n", correct))
         );
     }
 }
