@@ -21,7 +21,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package org.objectionary;
+package org.objectionary.parsing;
+
+import org.objectionary.ObjectsBox;
 
 /**
  * This class represents the parser.
