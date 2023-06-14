@@ -29,7 +29,7 @@ import org.objectionary.ObjectsBox;
  * One line parser.
  * @since 0.1.0
  */
-public class LineParser {
+public final class LineParser {
 
     /**
      * The box to put the result into.
