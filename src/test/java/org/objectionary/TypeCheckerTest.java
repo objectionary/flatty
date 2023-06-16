@@ -25,7 +25,6 @@ package org.objectionary;
 
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.objectionary.parsing.TypeChecker;
 
@@ -36,7 +35,6 @@ import org.objectionary.parsing.TypeChecker;
  */
 final class TypeCheckerTest {
 
-    @Disabled
     @Test
     void isEmptyTest() {
         MatcherAssert.assertThat(
@@ -49,7 +47,6 @@ final class TypeCheckerTest {
         );
     }
 
-    @Disabled
     @Test
     void isLocatorTest() {
         MatcherAssert.assertThat(
@@ -66,7 +63,6 @@ final class TypeCheckerTest {
         );
     }
 
-    @Disabled
     @Test
     void isDataTest() {
         MatcherAssert.assertThat(
@@ -79,7 +75,6 @@ final class TypeCheckerTest {
         );
     }
 
-    @Disabled
     @Test
     void isLambdaTest() {
         MatcherAssert.assertThat(
@@ -96,7 +91,6 @@ final class TypeCheckerTest {
         );
     }
 
-    @Disabled
     @Test
     void isObjectTest() {
         MatcherAssert.assertThat(
