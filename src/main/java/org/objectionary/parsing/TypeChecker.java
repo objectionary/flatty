@@ -26,14 +26,12 @@ package org.objectionary.parsing;
 /**
  * This class is representing the type checker.
  * @since 0.1.0
- * @checkstyle NonStaticMethodCheck (500 lines)
  */
 public final class TypeChecker {
 
     /**
      * The token to check the type of.
      */
-    @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
     private final String token;
 
     /**
@@ -47,8 +45,6 @@ public final class TypeChecker {
     /**
      * Checks if the token is an empty.
      * @return True if the token is an empty.
-     * @todo #41:30min Implement the method to check if the token is an empty.
-     *  Use methods such as {@link String#startsWith(String)} and {@link String#endsWith(String)}.
      */
     public boolean isEmpty() {
         return this.token.equals("ø");
@@ -57,8 +53,6 @@ public final class TypeChecker {
     /**
      * Checks if the token is a locator.
      * @return True if the token is a locator.
-     * @todo #41:30min Implement the method to check if the token is a locator.
-     *  Use methods such as {@link String#startsWith(String)} and {@link String#endsWith(String)}.
      */
     public boolean isLocator() {
         return this.token.startsWith("𝜋.") || this.token.startsWith("ξ.");
@@ -67,8 +61,6 @@ public final class TypeChecker {
     /**
      * Checks if the token is a data.
      * @return True if the token is a data.
-     * @todo #41:30min Implement the method to check if the token is a data.
-     *  Use methods such as {@link String#startsWith(String)} and {@link String#endsWith(String)}.
      */
     public boolean isData() {
         return this.token.startsWith("0x");
@@ -77,8 +69,6 @@ public final class TypeChecker {
     /**
      * Checks if the token is a lambda.
      * @return True if the token is a lambda.
-     * @todo #41:30min Implement the method to check if the token is a lambda.
-     *  Use methods such as {@link String#startsWith(String)} and {@link String#endsWith(String)}.
      */
     public boolean isLambda() {
         return this.token.startsWith("bool") || this.token.startsWith("int");
@@ -87,8 +77,6 @@ public final class TypeChecker {
     /**
      * Checks if the token is an object.
      * @return True if the token is an object.
-     * @todo #41:30min Implement the method to check if the token is an object.
-     *  Use methods such as {@link String#startsWith(String)} and {@link String#endsWith(String)}.
      */
     public boolean isObject() {
         return this.token.charAt(0) == 'ν';
