@@ -51,7 +51,7 @@ public final class TypeChecker {
      *  Use methods such as {@link String#startsWith(String)} and {@link String#endsWith(String)}.
      */
     public boolean isEmpty() {
-        return false;
+        return this.token.equals("ø");
     }
 
     /**
@@ -61,7 +61,7 @@ public final class TypeChecker {
      *  Use methods such as {@link String#startsWith(String)} and {@link String#endsWith(String)}.
      */
     public boolean isLocator() {
-        return false;
+        return this.token.startsWith("𝜋.") || this.token.startsWith("ξ.");
     }
 
     /**
@@ -71,7 +71,7 @@ public final class TypeChecker {
      *  Use methods such as {@link String#startsWith(String)} and {@link String#endsWith(String)}.
      */
     public boolean isData() {
-        return false;
+        return this.token.startsWith("0x");
     }
 
     /**
@@ -81,7 +81,7 @@ public final class TypeChecker {
      *  Use methods such as {@link String#startsWith(String)} and {@link String#endsWith(String)}.
      */
     public boolean isLambda() {
-        return false;
+        return this.token.startsWith("bool") || this.token.startsWith("int");
     }
 
     /**
@@ -91,6 +91,6 @@ public final class TypeChecker {
      *  Use methods such as {@link String#startsWith(String)} and {@link String#endsWith(String)}.
      */
     public boolean isObject() {
-        return false;
+        return this.token.charAt(0) == 'ν';
     }
 }
