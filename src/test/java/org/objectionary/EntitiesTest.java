@@ -29,7 +29,7 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.objectionary.entities.Empty;
 import org.objectionary.entities.Locator;
-import org.objectionary.parsing.EntityRead;
+import org.objectionary.parsing.Entities;
 
 /**
  * Entities reader test.
@@ -39,15 +39,15 @@ import org.objectionary.parsing.EntityRead;
  *  It should be both reading one entity and nested entities tests.
  *  Also we have to enable this tests.
  */
-final class ReaderTest {
+final class EntitiesTest {
 
     @Disabled
     @Test
     void readOneEmptyTest() {
         final String input = "ø";
-        final EntityRead reader = new EntityRead(new Tokenizer(input));
+        final Entities reader = new Entities(new Tokenizer(input));
         MatcherAssert.assertThat(
-            reader.readOne(),
+            reader.one(),
             Matchers.instanceOf(Empty.class)
         );
     }
@@ -56,9 +56,9 @@ final class ReaderTest {
     @Test
     void readOneLocatorTest() {
         final String input = "𝜋.𝜋.𝜋.x";
-        final EntityRead reader = new EntityRead(new Tokenizer(input));
+        final Entities reader = new Entities(new Tokenizer(input));
         MatcherAssert.assertThat(
-            reader.readOne(),
+            reader.one(),
             Matchers.instanceOf(Locator.class)
         );
     }

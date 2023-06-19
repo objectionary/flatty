@@ -33,7 +33,7 @@ import org.objectionary.entities.Entity;
  * @since 0.1.0
  * @checkstyle NonStaticMethodCheck (100 lines)
  */
-public final class EntityRead {
+public final class Entities {
 
     /**
      * The tokenizer.
@@ -45,7 +45,7 @@ public final class EntityRead {
      * Constructor.
      * @param tokenizer The tokenizer.
      */
-    public EntityRead(final Tokenizer tokenizer) {
+    public Entities(final Tokenizer tokenizer) {
         this.tokenizer = tokenizer;
     }
 
@@ -55,7 +55,7 @@ public final class EntityRead {
      * @todo #49:30min Implement this method.
      *  This method should read one entity recursively.
      */
-    public Entity readOne() {
+    public Entity one() {
         return null;
     }
 
@@ -65,7 +65,7 @@ public final class EntityRead {
      * @todo #49:30min Implement this method.
      *  This method should read nested entity recursively.
      */
-    public Map<String, Entity> readNested() {
+    public Map<String, Entity> nested() {
         return new HashMap<>();
     }
 }
