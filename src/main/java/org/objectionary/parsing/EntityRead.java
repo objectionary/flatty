@@ -33,7 +33,7 @@ import org.objectionary.entities.Entity;
  * @since 0.1.0
  * @checkstyle NonStaticMethodCheck (100 lines)
  */
-public final class Reader {
+public final class EntityRead {
 
     /**
      * The tokenizer.
@@ -45,7 +45,7 @@ public final class Reader {
      * Constructor.
      * @param tokenizer The tokenizer.
      */
-    public Reader(final Tokenizer tokenizer) {
+    public EntityRead(final Tokenizer tokenizer) {
         this.tokenizer = tokenizer;
     }
 

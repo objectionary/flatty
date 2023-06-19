@@ -29,7 +29,7 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.objectionary.entities.Empty;
 import org.objectionary.entities.Locator;
-import org.objectionary.parsing.Reader;
+import org.objectionary.parsing.EntityRead;
 
 /**
  * Entities reader test.
@@ -45,7 +45,7 @@ final class ReaderTest {
     @Test
     void readOneEmptyTest() {
         final String input = "ø";
-        final Reader reader = new Reader(new Tokenizer(input));
+        final EntityRead reader = new EntityRead(new Tokenizer(input));
         MatcherAssert.assertThat(
             reader.readOne(),
             Matchers.instanceOf(Empty.class)
@@ -56,7 +56,7 @@ final class ReaderTest {
     @Test
     void readOneLocatorTest() {
         final String input = "𝜋.𝜋.𝜋.x";
-        final Reader reader = new Reader(new Tokenizer(input));
+        final EntityRead reader = new EntityRead(new Tokenizer(input));
         MatcherAssert.assertThat(
             reader.readOne(),
             Matchers.instanceOf(Locator.class)
