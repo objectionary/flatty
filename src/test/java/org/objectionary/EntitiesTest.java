@@ -27,7 +27,10 @@ import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.objectionary.entities.Data;
 import org.objectionary.entities.Empty;
+import org.objectionary.entities.FlatObject;
+import org.objectionary.entities.Lambda;
 import org.objectionary.entities.Locator;
 import org.objectionary.parsing.Entities;
 
@@ -60,6 +63,50 @@ final class EntitiesTest {
         MatcherAssert.assertThat(
             reader.one(),
             Matchers.instanceOf(Locator.class)
+        );
+    }
+
+    @Disabled
+    @Test
+    void readOneLambdaTest() {
+        final String input = "int-times";
+        final Entities reader = new Entities(new Tokenizer(input));
+        MatcherAssert.assertThat(
+            reader.one(),
+            Matchers.instanceOf(Lambda.class)
+        );
+    }
+
+    @Disabled
+    @Test
+    void readOneDataTest() {
+        final String input = "0x0042";
+        final Entities reader = new Entities(new Tokenizer(input));
+        MatcherAssert.assertThat(
+            reader.one(),
+            Matchers.instanceOf(Data.class)
+        );
+    }
+
+    @Disabled
+    @Test
+    void readOneObjectTest() {
+        final String input = "ν(𝜋)";
+        final Entities reader = new Entities(new Tokenizer(input));
+        MatcherAssert.assertThat(
+            reader.one(),
+            Matchers.instanceOf(FlatObject.class)
+        );
+    }
+
+    @Disabled
+    @Test
+    void readOneFailedTest() {
+        final String input = "...";
+        final Entities reader = new Entities(new Tokenizer(input));
+        MatcherAssert.assertThat(
+            reader.one(),
+            Matchers.instanceOf(IllegalArgumentException.class)
         );
     }
 }
