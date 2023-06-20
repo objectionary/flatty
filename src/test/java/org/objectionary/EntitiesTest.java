@@ -38,9 +38,6 @@ import org.objectionary.parsing.Entities;
  * Entities reader test.
  *
  * @since 0.1.0
- * @todo #49:30min Add more tests for Reader.
- *  It should be both reading one entity and nested entities tests.
- *  Also we have to enable this tests.
  */
 final class EntitiesTest {
 
