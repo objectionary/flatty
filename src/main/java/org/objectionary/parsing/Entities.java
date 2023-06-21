@@ -23,10 +23,13 @@
  */
 package org.objectionary.parsing;
 
+import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Map;
 import org.objectionary.Tokenizer;
-import org.objectionary.entities.Entity;
+import org.objectionary.entities.*;
+import org.objectionary.tokens.StringToken;
+import org.objectionary.tokens.Token;
 
 /**
  * Entities reader.
@@ -56,7 +59,28 @@ public final class Entities {
      *  This method should read one entity recursively.
      */
     public Entity one() {
-        return null;
+        final Token token = tokenizer.getToken();
+        if (!(token instanceof StringToken)) {
+            throw new IllegalArgumentException("Expected string token");
+        }
+        final String value = ((StringToken) token).getValue();
+        final Entity result;
+        final TypeChecker type = new TypeChecker(value);
+        if (type.isEmpty()) {
+            result = new Empty();
+        } else if (type.isLocator()) {
+            result = new Locator(value);
+        } else if (type.isData()) {
+            result = new Data(Integer.parseInt(value.substring(2), 16));
+        } else if (type.isLambda()) {
+            result = new Lambda(value);
+        } else if (type.isObject()) {
+            result = createObject(tokenizer, value);
+        } else {
+            System.out.println(value);
+            throw new IllegalArgumentException("Unknown token");
+        }
+        return result;
     }
 
     /**
