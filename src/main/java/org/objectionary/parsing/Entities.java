@@ -55,8 +55,6 @@ public final class Entities {
     /**
      * Reads one entity.
      * @return The parsed entity.
-     * @todo #49:30min Implement this method.
-     *  This method should read one entity recursively.
      */
     public Entity one() {
         final Token token = tokenizer.getToken();
@@ -75,7 +73,7 @@ public final class Entities {
         } else if (type.isLambda()) {
             result = new Lambda(value);
         } else if (type.isObject()) {
-            result = createObject(tokenizer, value);
+            result = createObject(value);
         } else {
             System.out.println(value);
             throw new IllegalArgumentException("Unknown token");
@@ -91,5 +89,31 @@ public final class Entities {
      */
     public Map<String, Entity> nested() {
         return new HashMap<>();
+    }
+
+    /**
+     * Creates an object.
+     * @param value The value to parse.
+     * @return The parsed entity.
+     * @todo #51:30min Implement this method.
+     *  This method should parse the value and create an object.
+     */
+    private Entity createObject(final String value) {
+        final Entity result;
+        if (value.contains(")")) {
+            result = new FlatObject(
+                value.substring(0, value.indexOf('(')),
+                value.substring(value.indexOf('(') + 1, value.indexOf(')'))
+            );
+        } else if (value.contains("(")) {
+            tokenizer.next();
+            final Map<String, Entity> application = nested();
+            result = new NestedObject(
+                value.substring(0, value.indexOf('(')), application
+            );
+        } else {
+            result = new FlatObject(value, "");
+        }
+        return result;
     }
 }
