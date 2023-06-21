@@ -44,7 +44,6 @@ import org.objectionary.parsing.Entities;
  */
 final class EntitiesTest {
 
-    @Disabled
     @Test
     void readOneEmptyTest() {
         final String input = "ø";
@@ -55,7 +54,6 @@ final class EntitiesTest {
         );
     }
 
-    @Disabled
     @Test
     void readOneLocatorTest() {
         final String input = "𝜋.𝜋.𝜋.x";
@@ -66,7 +64,6 @@ final class EntitiesTest {
         );
     }
 
-    @Disabled
     @Test
     void readOneLambdaTest() {
         final String input = "int-times";
@@ -77,7 +74,6 @@ final class EntitiesTest {
         );
     }
 
-    @Disabled
     @Test
     void readOneDataTest() {
         final String input = "0x0042";
@@ -88,7 +84,6 @@ final class EntitiesTest {
         );
     }
 
-    @Disabled
     @Test
     void readOneObjectTest() {
         final String input = "ν(𝜋)";
