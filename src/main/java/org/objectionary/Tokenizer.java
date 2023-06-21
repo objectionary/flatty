@@ -73,7 +73,7 @@ public final class Tokenizer {
      * Returns the current token.
      * @return The current token.
      */
-    Token getToken() {
+    public Token getToken() {
         final String token = this.tokens[this.position];
         final Token result;
         switch (token) {
