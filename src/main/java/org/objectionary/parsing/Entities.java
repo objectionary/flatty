@@ -95,8 +95,6 @@ public final class Entities {
      * Creates an object.
      * @param value The value to parse.
      * @return The parsed entity.
-     * @todo #51:30min Implement this method.
-     *  This method should parse the value and create an object.
      */
     private Entity createObject(final String value) {
         final Entity result;
