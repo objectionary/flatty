@@ -23,11 +23,16 @@
  */
 package org.objectionary.parsing;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Map;
 import org.objectionary.Tokenizer;
-import org.objectionary.entities.*;
+import org.objectionary.entities.Data;
+import org.objectionary.entities.Empty;
+import org.objectionary.entities.Entity;
+import org.objectionary.entities.FlatObject;
+import org.objectionary.entities.Lambda;
+import org.objectionary.entities.Locator;
+import org.objectionary.entities.NestedObject;
 import org.objectionary.tokens.StringToken;
 import org.objectionary.tokens.Token;
 
@@ -57,7 +62,7 @@ public final class Entities {
      * @return The parsed entity.
      */
     public Entity one() {
-        final Token token = tokenizer.getToken();
+        final Token token = this.tokenizer.getToken();
         if (!(token instanceof StringToken)) {
             throw new IllegalArgumentException("Expected string token");
         }
@@ -73,9 +78,8 @@ public final class Entities {
         } else if (type.isLambda()) {
             result = new Lambda(value);
         } else if (type.isObject()) {
-            result = createObject(value);
+            result = this.createObject(value);
         } else {
-            System.out.println(value);
             throw new IllegalArgumentException("Unknown token");
         }
         return result;
@@ -104,8 +108,8 @@ public final class Entities {
                 value.substring(value.indexOf('(') + 1, value.indexOf(')'))
             );
         } else if (value.contains("(")) {
-            tokenizer.next();
-            final Map<String, Entity> application = nested();
+            this.tokenizer.next();
+            final Map<String, Entity> application = this.nested();
             result = new NestedObject(
                 value.substring(0, value.indexOf('(')), application
             );

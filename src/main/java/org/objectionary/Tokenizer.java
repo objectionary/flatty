@@ -58,15 +58,8 @@ public final class Tokenizer {
      * Checks if there are more tokens.
      * @return True if there are more tokens.
      */
-    boolean hasNext() {
+    public boolean hasNext() {
         return this.position < this.tokens.length;
-    }
-
-    /**
-     * Increments the position.
-     */
-    public void next() {
-        this.position += 1;
     }
 
     /**
@@ -95,4 +88,11 @@ public final class Tokenizer {
         return result;
     }
 
+    /**
+     * Increments the position.
+     */
+    public void next() {
+        this.position += 1;
+    }
 }
+
