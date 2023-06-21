@@ -65,7 +65,7 @@ public final class Tokenizer {
     /**
      * Increments the position.
      */
-    void next() {
+    public void next() {
         this.position += 1;
     }
 
