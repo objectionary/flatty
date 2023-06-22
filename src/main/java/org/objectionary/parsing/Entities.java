@@ -33,7 +33,6 @@ import org.objectionary.entities.FlatObject;
 import org.objectionary.entities.Lambda;
 import org.objectionary.entities.Locator;
 import org.objectionary.entities.NestedObject;
-import org.objectionary.tokens.ArrowToken;
 import org.objectionary.tokens.BracketToken;
 import org.objectionary.tokens.StringToken;
 import org.objectionary.tokens.Token;
@@ -101,10 +100,8 @@ public final class Entities {
                     break;
                 }
             }
-            assert token instanceof StringToken;
             final String name = ((StringToken) token).getValue();
             this.tokenizer.next();
-            assert this.tokenizer.getToken() instanceof ArrowToken;
             this.tokenizer.next();
             final Entity entity = this.one();
             result.put(name, entity);
