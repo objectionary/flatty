@@ -90,8 +90,6 @@ public final class Entities {
     /**
      * Reads nested entity.
      * @return The parsed nested entity.
-     * @todo #49:30min Implement this method.
-     *  This method should read nested entity recursively.
      */
     public Map<String, Entity> nested() {
         final Map<String, Entity> result = new HashMap<>();
