@@ -94,7 +94,7 @@ public final class Entities {
     public Map<String, Entity> nested() {
         final Map<String, Entity> result = new HashMap<>();
         while (true) {
-            final Token token = tokenizer.getToken();
+            final Token token = this.tokenizer.getToken();
             if (token instanceof BracketToken) {
                 final BracketToken bracket = (BracketToken) token;
                 if (bracket.getState() == BracketToken.BracketType.CLOSE) {
@@ -103,12 +103,12 @@ public final class Entities {
             }
             assert token instanceof StringToken;
             final String name = ((StringToken) token).getValue();
-            tokenizer.next();
-            assert tokenizer.getToken() instanceof ArrowToken;
-            tokenizer.next();
+            this.tokenizer.next();
+            assert this.tokenizer.getToken() instanceof ArrowToken;
+            this.tokenizer.next();
             final Entity entity = this.one();
             result.put(name, entity);
-            tokenizer.next();
+            this.tokenizer.next();
         }
         return result;
     }
