@@ -41,6 +41,15 @@ public final class FlatObject extends Entity {
 
     /**
      * Constructor.
+     *
+     * @param name The name of the object.
+     */
+    public FlatObject(final String name) {
+        this(name, "");
+    }
+
+    /**
+     * Constructor.
      * @param name The name of the object.
      * @param locator The locator of the object.
      */
@@ -49,15 +58,34 @@ public final class FlatObject extends Entity {
         this.locator = locator;
     }
 
-    @Override
-    public String toString() {
-        final String result;
-        if (this.locator.isEmpty()) {
-            result = this.name;
-        } else {
-            result = String.format("%s(%s)", this.name, this.locator);
-        }
-        return result;
+    /**
+     * Returns the name of the object.
+     * @return The name of the object.
+     */
+    public String getName() {
+        return this.name;
     }
 
+    /**
+     * Returns the locator of the object.
+     * @return The locator of the object.
+     */
+    public String getLocator() {
+        return this.locator;
+    }
+
+    @Override
+    public String toString() {
+        return this.locator.isEmpty() ? this.name : String.format("%s(%s)", this.name, this.locator);
+    }
+
+    @Override
+    public Entity copy() {
+        return new FlatObject(this.name, this.locator);
+    }
+
+    @Override
+    public Entity reframe() {
+        return this.locator.isEmpty() ? this.copy() : new FlatObject(this.getName(), "");
+    }
 }
