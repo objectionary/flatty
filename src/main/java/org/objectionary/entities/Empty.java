@@ -30,6 +30,16 @@ package org.objectionary.entities;
 public final class Empty extends Entity {
 
     @Override
+    public Entity copy() {
+        return new Empty();
+    }
+
+    @Override
+    public Entity reframe() {
+        return this;
+    }
+
+    @Override
     public String toString() {
         return "ø";
     }

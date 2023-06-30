@@ -42,8 +42,26 @@ public final class Lambda extends Entity {
         this.function = function;
     }
 
+    /**
+     * Returns the function of the lambda.
+     * @return The function of the lambda.
+     */
+    public String getFunction() {
+        return this.function;
+    }
+
     @Override
     public String toString() {
-        return this.function;
+        return this.getFunction();
+    }
+
+    @Override
+    public Entity copy() {
+        return new Lambda(this.getFunction());
+    }
+
+    @Override
+    public Entity reframe() {
+        return this;
     }
 }
