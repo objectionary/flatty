@@ -23,6 +23,7 @@
  */
 package org.objectionary.entities;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -51,18 +52,52 @@ public final class NestedObject extends Entity {
         this.application = application;
     }
 
+    /**
+     * Returns the name of the object with application.
+     * @return The name of the object with application.
+     */
+    public String getName() {
+        return this.name;
+    }
+
+    /**
+     * Returns the application of the object with application.
+     * @return The application of the object with application.
+     */
+    public Map<String, Entity> getApplication() {
+        return this.application;
+    }
+
     @Override
     public String toString() {
         final StringBuilder buffer = new StringBuilder();
         final int size = this.application.size();
         int count = 0;
-        for (final Map.Entry<String, Entity> entry : this.application.entrySet()) {
+        for (final Map.Entry<String, Entity> entry : this.getApplication().entrySet()) {
             buffer.append(entry.getKey()).append(" ↦ ").append(entry.getValue());
             count += 1;
             if (count < size) {
                 buffer.append(", ");
             }
         }
-        return String.format("%s( %s )", this.name, buffer);
+        return String.format("%s( %s )", this.getName(), buffer);
+    }
+
+    @Override
+    public Entity copy() {
+        final Map<String, Entity> copy = new HashMap<>(this.application.size());
+        for (final Map.Entry<String, Entity> entry : this.application.entrySet()) {
+            copy.put(entry.getKey(), entry.getValue().copy());
+        }
+        return new NestedObject(this.getName(), copy);
+    }
+
+    @Override
+    public Entity reframe() {
+        final Map<String, Entity> reframed = new HashMap<>(this.application.size());
+        for (final Map.Entry<String, Entity> entry : this.application.entrySet()) {
+            reframed.put(entry.getKey(), entry.getValue().reframe());
+        }
+        return new NestedObject(this.getName(), reframed);
     }
 }

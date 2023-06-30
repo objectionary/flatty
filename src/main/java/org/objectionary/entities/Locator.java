@@ -23,6 +23,9 @@
  */
 package org.objectionary.entities;
 
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * This class represents the locator entity.
  * @since 0.1.0
@@ -42,8 +45,26 @@ public final class Locator extends Entity {
         this.path = path;
     }
 
+    /**
+     * Returns the path of the locator.
+     * @return The path of the locator.
+     */
+    public List<String> getPath() {
+        return Arrays.asList(this.path.split("\\."));
+    }
+
     @Override
     public String toString() {
         return this.path;
+    }
+
+    @Override
+    public Entity copy() {
+        return new Locator(String.join(".", this.getPath()));
+    }
+
+    @Override
+    public Entity reframe() {
+        return new Locator("𝜋.".concat(String.join(".", this.path).replace("ξ.", "")));
     }
 }
