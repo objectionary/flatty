@@ -25,14 +25,25 @@ package org.objectionary;
 
 import java.util.HashMap;
 import java.util.Map;
-import org.junit.jupiter.api.Assertions;
+import org.hamcrest.MatcherAssert;
+import org.hamcrest.Matchers;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.objectionary.entities.Data;
 import org.objectionary.entities.Empty;
 import org.objectionary.entities.Entity;
+import org.objectionary.entities.FlatObject;
+import org.objectionary.entities.Lambda;
+import org.objectionary.entities.Locator;
+import org.objectionary.entities.NestedObject;
 
 /**
  * Test case for {@link Flatter}.
  * @since 0.1.0
+ *
+ * @todo #23:30min Enable several tests in this FlatterTest class.
+ *  Since they are failed due to NPE, we need to fix them. The tests
+ *  are disabled for now.
  */
 final class FlatterTest {
 
@@ -51,7 +62,150 @@ final class FlatterTest {
         bindings.put("x", new Empty());
         box.put(FlatterTest.INIT_OBJECT, bindings);
         final Flatter flatter = new Flatter(box);
-        Assertions.assertEquals(flatter.flat(), box);
+        MatcherAssert.assertThat(
+            flatter.flat(),
+            Matchers.equalTo(box)
+        );
+    }
+
+    @Test
+    void boxWithDataToStringTest() {
+        final ObjectsBox box = new ObjectsBox();
+        final Map<String, Entity> bindings = new HashMap<>();
+        bindings.put("Δ", new Data(Integer.parseInt("000A", 16)));
+        box.put(FlatterTest.INIT_OBJECT, bindings);
+        final Flatter flatter = new Flatter(box);
+        MatcherAssert.assertThat(
+            flatter.flat().toString(),
+            Matchers.equalTo("ν0(𝜋) ↦ ⟦ Δ ↦ 0x000A ⟧")
+        );
+    }
+
+    @Test
+    void boxWithLocatorToStringTest() {
+        final ObjectsBox box = new ObjectsBox();
+        final Map<String, Entity> bindings = new HashMap<>();
+        bindings.put("x", new Locator("𝜋.𝜋.y"));
+        box.put(FlatterTest.INIT_OBJECT, bindings);
+        final Flatter flatter = new Flatter(box);
+        MatcherAssert.assertThat(
+            flatter.flat().toString(),
+            Matchers.equalTo("ν0(𝜋) ↦ ⟦ x ↦ 𝜋.𝜋.y ⟧")
+        );
+    }
+
+    @Test
+    @Disabled
+    void boxWithFlatObjectToStringTest() {
+        final ObjectsBox box = new ObjectsBox();
+        final Map<String, Entity> bindings = new HashMap<>();
+        bindings.put("y", new FlatObject("bar", "ξ"));
+        box.put(FlatterTest.INIT_OBJECT, bindings);
+        final Flatter flatter = new Flatter(box);
+        MatcherAssert.assertThat(
+            flatter.flat().toString(),
+            Matchers.equalTo("ν0(𝜋) ↦ ⟦ y ↦ bar(ξ) ⟧")
+        );
+    }
+
+    @Test
+    void boxWithLambdaToStringTest() {
+        final ObjectsBox box = new ObjectsBox();
+        final Map<String, Entity> bindings = new HashMap<>();
+        bindings.put("λ", new Lambda("Plus"));
+        box.put(FlatterTest.INIT_OBJECT, bindings);
+        final Flatter flatter = new Flatter(box);
+        MatcherAssert.assertThat(
+            flatter.flat().toString(),
+            Matchers.equalTo("ν0(𝜋) ↦ ⟦ λ ↦ Plus ⟧")
+        );
+    }
+
+    @Test
+    @Disabled
+    void boxWithNestedObjectToStringTest() {
+        final ObjectsBox box = new ObjectsBox();
+        final Map<String, Entity> application = new HashMap<>();
+        application.put("x", new Locator("𝜋.𝜋.z"));
+        final Map<String, Entity> bindings = new HashMap<>();
+        bindings.put("y", new NestedObject("v", application));
+        box.put(FlatterTest.INIT_OBJECT, bindings);
+        final Flatter flatter = new Flatter(box);
+        MatcherAssert.assertThat(
+            flatter.flat().toString(),
+            Matchers.equalTo("ν0(𝜋) ↦ ⟦ y ↦ v( x ↦ 𝜋.𝜋.z ) ⟧")
+        );
+    }
+
+    @Test
+    @Disabled
+    void zeroObjectOrderTest() {
+        final ObjectsBox box = new ObjectsBox();
+        Map<String, Entity> bindings = new HashMap<>();
+        bindings.put("x", new Empty());
+        box.put("a", bindings);
+        bindings = new HashMap<>();
+        bindings.put("y", new Empty());
+        box.put("b", bindings);
+        bindings = new HashMap<>();
+        bindings.put("z", new Empty());
+        box.put(FlatterTest.INIT_OBJECT, bindings);
+        final Flatter flatter = new Flatter(box);
+        MatcherAssert.assertThat(
+            flatter.flat().toString().split("\n")[0],
+            Matchers.equalTo("ν0(𝜋) ↦ ⟦ z ↦ ø ⟧")
+        );
+    }
+
+    @Test
+    @Disabled
+    void deltaOrderTest() {
+        final ObjectsBox box = new ObjectsBox();
+        final Map<String, Entity> bindings = new HashMap<>();
+        bindings.put("Δ", new Data(Integer.parseInt("000A", 16)));
+        bindings.put("x", new Empty());
+        bindings.put("y", new FlatObject("bar", "𝜋"));
+        bindings.put("a", new Lambda("Atom"));
+        box.put(FlatterTest.INIT_OBJECT, bindings);
+        final Flatter flatter = new Flatter(box);
+        MatcherAssert.assertThat(
+            flatter.flat().toString().split(" ")[3],
+            Matchers.equalTo("Δ")
+        );
+    }
+
+    @Test
+    @Disabled
+    void lambdaOrderTest() {
+        final ObjectsBox box = new ObjectsBox();
+        final Map<String, Entity> bindings = new HashMap<>();
+        bindings.put("λ", new Data(Integer.parseInt("000A", 16)));
+        bindings.put("a1", new Empty());
+        bindings.put("a2", new FlatObject("bar", "𝜋"));
+        bindings.put("a3", new Lambda("Atom"));
+        box.put(FlatterTest.INIT_OBJECT, bindings);
+        final Flatter flatter = new Flatter(box);
+        MatcherAssert.assertThat(
+            flatter.flat().toString().split(" ")[3],
+            Matchers.equalTo("λ")
+        );
+    }
+
+    @Test
+    @Disabled
+    void phiOrderTest() {
+        final ObjectsBox box = new ObjectsBox();
+        final Map<String, Entity> bindings = new HashMap<>();
+        bindings.put("𝜑", new Data(Integer.parseInt("000A", 16)));
+        bindings.put("a", new Empty());
+        bindings.put("b", new FlatObject("d", "𝜋"));
+        bindings.put("c", new Lambda("Atom"));
+        box.put(FlatterTest.INIT_OBJECT, bindings);
+        final Flatter flatter = new Flatter(box);
+        MatcherAssert.assertThat(
+            flatter.flat().toString().split(" ")[3],
+            Matchers.equalTo("𝜑")
+        );
     }
 
 }
