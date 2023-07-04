@@ -25,6 +25,7 @@ package org.objectionary;
 
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.objectionary.entities.Data;
@@ -32,6 +33,7 @@ import org.objectionary.entities.Empty;
 import org.objectionary.entities.FlatObject;
 import org.objectionary.entities.Lambda;
 import org.objectionary.entities.Locator;
+import org.objectionary.entities.NestedObject;
 import org.objectionary.parsing.Entities;
 
 /**
@@ -102,6 +104,36 @@ final class EntitiesTest {
         MatcherAssert.assertThat(
             reader.one(),
             Matchers.instanceOf(IllegalArgumentException.class)
+        );
+    }
+
+    @Test
+    void readOneNestedObject() {
+        final String input = "ν1( ρ ↦ ξ.ρ )";
+        final Entities reader = new Entities(new Tokenizer(input));
+        MatcherAssert.assertThat(
+            reader.one(),
+            Matchers.instanceOf(NestedObject.class)
+        );
+    }
+
+    @Test
+    void readOneDoubledNestedObject() {
+        final String input = "ν2( ν3 ↦ ν4( ρ ↦ ξ.ρ ) )";
+        final Entities reader = new Entities(new Tokenizer(input));
+        MatcherAssert.assertThat(
+            reader.one(),
+            Matchers.instanceOf(NestedObject.class)
+        );
+    }
+
+    @Test
+    void failedToReadOneNestedObject() {
+        final String input = "⟦ ν3 ↦ ν4( ρ ↦ ξ.ρ ) ⟧";
+        final Entities reader = new Entities(new Tokenizer(input));
+        Assertions.assertThrows(
+            IllegalArgumentException.class,
+            () -> reader.one()
         );
     }
 }

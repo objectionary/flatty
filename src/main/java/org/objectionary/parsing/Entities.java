@@ -33,6 +33,7 @@ import org.objectionary.entities.FlatObject;
 import org.objectionary.entities.Lambda;
 import org.objectionary.entities.Locator;
 import org.objectionary.entities.NestedObject;
+import org.objectionary.tokens.BracketToken;
 import org.objectionary.tokens.StringToken;
 import org.objectionary.tokens.Token;
 
@@ -88,11 +89,25 @@ public final class Entities {
     /**
      * Reads nested entity.
      * @return The parsed nested entity.
-     * @todo #49:30min Implement this method.
-     *  This method should read nested entity recursively.
      */
     public Map<String, Entity> nested() {
-        return new HashMap<>();
+        final Map<String, Entity> result = new HashMap<>();
+        while (true) {
+            final Token token = this.tokenizer.getToken();
+            if (token instanceof BracketToken) {
+                final BracketToken bracket = (BracketToken) token;
+                if (bracket.getState() == BracketToken.BracketType.CLOSE) {
+                    break;
+                }
+            }
+            final String name = ((StringToken) token).getValue();
+            this.tokenizer.next();
+            this.tokenizer.next();
+            final Entity entity = this.one();
+            result.put(name, entity);
+            this.tokenizer.next();
+        }
+        return result;
     }
 
     /**
